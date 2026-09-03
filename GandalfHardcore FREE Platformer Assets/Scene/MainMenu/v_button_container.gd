@@ -3,8 +3,9 @@ extends VBoxContainer
 @onready var bg: ColorRect = $Bar
 @onready var hover_sfx: AudioStreamPlayer = $HoverS
 @onready var click_sfx: AudioStreamPlayer = $ClickS
-# Hubungkan ke node BgmMusic (sesuaikan path jika berada di luar VBoxContainer, misal: $"../BgmMusic")
 @onready var bgm_music: AudioStreamPlayer = $BgmS
+
+const CHARACTER_SELECT_PATH: String = "res://GandalfHardcore FREE Platformer Assets/Scene/Main/character_select.tscn"
 
 var current_button: Button = null
 var tween: Tween
@@ -15,7 +16,6 @@ func _ready() -> void:
 		if child is Button:
 			child.mouse_entered.connect(_on_button_hovered.bind(child))
 			child.focus_entered.connect(_on_button_hovered.bind(child))
-			# Teruskan info tombol mana yang ditekan
 			child.pressed.connect(_on_button_pressed.bind(child))
 			child.flat = true
 	
@@ -46,32 +46,28 @@ func _on_button_pressed(clicked_btn: Button) -> void:
 	if click_sfx and click_sfx.stream:
 		click_sfx.play()
 	
-	# Cek apakah tombol yang diklik adalah Play
 	if clicked_btn.text.to_lower() == "play" or "play" in clicked_btn.name.to_lower():
-			print("Tombol play terdeteksi, mulai fade out...")
-			fade_out_bgm(1.2)
+		print("Tombol play terdeteksi, mulai fade out...")
+	
+		for child in get_children():
+			if child is Button:
+				child.disabled = true
+				
+		fade_out_bgm(1.2)
 
 func fade_out_bgm(duration: float) -> void:
-	if not bgm_music or not bgm_music.playing:
-		return
-		
-	var bgm_tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
-	
-	# Animasi dari volume 1.0 (100%) turun ke 0.0 (0%) secara bertahap
-	bgm_tween.tween_method(
-		func(linear_vol: float):
-			bgm_music.volume_db = linear_to_db(max(linear_vol, 0.0001)),
-		1.0,
-		0.0,
-		duration
-	)
-	
-	# Baru stop lagu setelah durasi benar-benar habis
-	bgm_tween.finished.connect(func():
-		bgm_music.stop()
-		# Jika ingin pindah scene, taruh di sini:
-		# get_tree().change_scene_to_file("res://world.tscn")
-	)
+	if bgm_music and bgm_music.playing:
+		var bgm_tween = create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+		bgm_tween.tween_method(
+			func(linear_vol: float):
+				bgm_music.volume_db = linear_to_db(max(linear_vol, 0.0001)),
+			1.0,
+			0.0,
+			duration
+		)
+		bgm_tween.finished.connect(func(): bgm_music.stop())
+
+	SceneTransition.change_scene(CHARACTER_SELECT_PATH, duration)
 
 func _move_background_to(target_btn: Button, instant: bool) -> void:
 	var target_pos_y = target_btn.position.y

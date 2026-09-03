@@ -1,0 +1,202 @@
+[gd_scene format=3 uid="uid://lynkh7eesbbf"]
+
+[ext_resource type="Texture2D" uid="uid://xdsfab2flgmp" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Character skin colors/Male Skin1.png" id="1_ergg4"]
+[ext_resource type="Texture2D" uid="uid://cyuq2kr5747r3" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Clothing/Boots.png" id="2_1e63u"]
+[ext_resource type="Texture2D" uid="uid://ctvpw2ngsdl8t" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Clothing/Blue Pants.png" id="3_aw6es"]
+[ext_resource type="Texture2D" uid="uid://bry1vqrbiitc3" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Clothing/Blue Shirt v2.png" id="4_u8t64"]
+[ext_resource type="Texture2D" uid="uid://bn6xs1xanedd0" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Hair/Male Hair1.png" id="5_j0wg4"]
+[ext_resource type="Texture2D" uid="uid://ch7vhfijop6fn" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Hand/Male Sword.png" id="6_uqly0"]
+
+[sub_resource type="Animation" id="Animation_ic333"]
+resource_name = "Idle"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sepatu:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Celana:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Baju:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rambut:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 4]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Tangan:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.13333334, 0.16666667, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 1, 1, 2, 3, 4, 4]
+}
+
+[sub_resource type="Animation" id="Animation_h4lxq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rambut:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tangan:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sepatu:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Celana:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Baju:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fm8gf"]
+_data = {
+&"Idle": SubResource("Animation_ic333"),
+&"RESET": SubResource("Animation_h4lxq")
+}
+
+[node name="player_sword" type="Node2D" unique_id=981119401]
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1749443239]
+texture = ExtResource("1_ergg4")
+hframes = 10
+vframes = 6
+
+[node name="Sepatu" type="Sprite2D" parent="." unique_id=1002347978]
+texture = ExtResource("2_1e63u")
+hframes = 10
+vframes = 6
+
+[node name="Celana" type="Sprite2D" parent="." unique_id=1311386196]
+texture = ExtResource("3_aw6es")
+hframes = 10
+vframes = 6
+
+[node name="Baju" type="Sprite2D" parent="." unique_id=1553955720]
+texture = ExtResource("4_u8t64")
+hframes = 10
+vframes = 6
+
+[node name="Rambut" type="Sprite2D" parent="." unique_id=90295366]
+texture = ExtResource("5_j0wg4")
+hframes = 10
+vframes = 6
+
+[node name="Tangan" type="Sprite2D" parent="." unique_id=2105295829]
+texture = ExtResource("6_uqly0")
+hframes = 10
+vframes = 6
+
+[node name="Idle" type="AnimationPlayer" parent="." unique_id=595247584]
+libraries/ = SubResource("AnimationLibrary_fm8gf")
+autoplay = &"Idle"
