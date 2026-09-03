@@ -1,28 +1,9 @@
 [gd_scene format=3 uid="uid://b0oxnomd5fvru"]
 
-[ext_resource type="Texture2D" uid="uid://be5fwxoi5ovfy" path="res://GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 5.png" id="1_0hol4"]
-[ext_resource type="Texture2D" uid="uid://df6j3aaw72u5i" path="res://GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/Background Castle .png" id="2_q6r6c"]
-[ext_resource type="Texture2D" uid="uid://cve1xjx486m4q" path="res://GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 2.png" id="3_kdubu"]
-[ext_resource type="Texture2D" uid="uid://di8edcp73on4c" path="res://GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Normal BG/GandalfHardcore Background layers_layer 1.png" id="4_d21ai"]
-
-[node name="Background" type="Node2D" unique_id=1802350946]
-
-[node name="GandalfHardcoreBackgroundLayersLayer5" type="Sprite2D" parent="." unique_id=1858348570]
-position = Vector2(573.5, 325.5)
-scale = Vector2(1.1259766, 1.8468208)
-texture = ExtResource("1_0hol4")
-
-[node name="BackgroundCastle" type="Sprite2D" parent="." unique_id=712743714]
-position = Vector2(1405, 625.99994)
-scale = Vector2(2.53125, 3.0520232)
-texture = ExtResource("2_q6r6c")
-
-[node name="GandalfHardcoreBackgroundLayersLayer2" type="Sprite2D" parent="." unique_id=2115220394]
-position = Vector2(586.12146, 456.00003)
-scale = Vector2(1.150289, 1.150289)
-texture = ExtResource("3_kdubu")
-
-[node name="GandalfHardcoreBackgroundLayersLayer1" type="Sprite2D" parent="." unique_id=151648173]
-position = Vector2(574.99994, 460)
-scale = Vector2(1.1387283, 1.1387283)
-texture = ExtResource("4_d21ai")
+[node name="Main_Menu" type="Control" unique_id=397588192]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

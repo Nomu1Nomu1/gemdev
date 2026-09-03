@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b7xks8l2tgy58"]
+
+[node name="CharacterSelect" type="Control" unique_id=1104137195]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1344956607]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03137255, 0.039215688, 0.05490196, 1)
+
+[node name="DustP" type="CPUParticles2D" parent="." unique_id=890918875]
+
+[node name="CenterUI" type="VBoxContainer" parent="." unique_id=1757645565]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CenterUI" unique_id=392136525]
+layout_mode = 2
+
+[node name="SpacerTop" type="Control" parent="CenterUI" unique_id=2129326387]
+layout_mode = 2
+
+[node name="CardsHBox" type="HBoxContainer" parent="CenterUI" unique_id=2082313537]
+layout_mode = 2
+
+[node name="VanguardCard" type="Button" parent="CenterUI/CardsHBox" unique_id=942543747]
+layout_mode = 2
+
+[node name="CardBG" type="ColorRect" parent="CenterUI/CardsHBox/VanguardCard" unique_id=1269712468]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CardContent" type="VBoxContainer" parent="CenterUI/CardsHBox/VanguardCard" unique_id=768252812]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ClassName" type="Label" parent="CenterUI/CardsHBox/VanguardCard/CardContent" unique_id=286043214]
+layout_mode = 2
+
+[node name="WeaponSub" type="Label" parent="CenterUI/CardsHBox/VanguardCard/CardContent" unique_id=593130896]
+layout_mode = 2
+
+[node name="SpriteContainer" type="CenterContainer" parent="CenterUI/CardsHBox/VanguardCard/CardContent" unique_id=1009406489]
+layout_mode = 2

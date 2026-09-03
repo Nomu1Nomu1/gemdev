@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://odl2ja4xn70t"]
+
+[ext_resource type="Texture2D" uid="uid://c3ibqu76qj6fe" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/miklaws-background.png" id="1_osxpc"]
+[ext_resource type="FontFile" uid="uid://dbaoehkuhp4ky" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ApexMk2-BoldExtended.otf" id="3_q55ea"]
+[ext_resource type="Script" uid="uid://naof4v6ya0ib" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/v_button_container.gd" id="4_ot4bh"]
+[ext_resource type="FontFile" uid="uid://blf0ofaqt4216" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ThaleahFat.ttf" id="4_teh6h"]
+[ext_resource type="AudioStream" uid="uid://bi3a15qgtqyvi" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/HoverSound.mp3" id="5_osxpc"]
+[ext_resource type="Script" uid="uid://b5xdj0xp82bv6" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/menu_button.gd" id="5_wdwbw"]
+[ext_resource type="AudioStream" uid="uid://b87pwxiiioo7n" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/ClickSound.mp3" id="6_5gfs0"]
+[ext_resource type="Shader" uid="uid://cs4hp5o627f5y" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/main_menu.gdshader" id="6_q55ea"]
+[ext_resource type="AudioStream" uid="uid://djmcadod1mcsx" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/BGM.mp3" id="7_5gfs0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_teh6h"]
+shader = ExtResource("6_q55ea")
+shader_parameter/bg_color = Color(0.06, 0.42, 0.62, 0.65)
+shader_parameter/border_color = Color(0.18, 0.78, 0.95, 1)
+shader_parameter/corner_cut = 3.0
+shader_parameter/border_size = 1.0
+shader_parameter/fade_end = 0.65
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n43y7"]
+
+[node name="Main_Menu" type="Control" unique_id=397588192]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=680093937]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_osxpc")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=380388474]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=234069403]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="S" type="Control" parent="MarginContainer/VBoxContainer" unique_id=545018236]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1246371107]
+light_mask = 2
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.23529412, 0, 0.9411765, 1)
+theme_override_colors/font_outline_color = Color(0.23529412, 1, 0.9411765, 1)
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("3_q55ea")
+theme_override_font_sizes/font_size = 150
+text = "domau"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1894395848]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1372968832]
+custom_minimum_size = Vector2(500, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+script = ExtResource("4_ot4bh")
+
+[node name="HoverS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=544641748]
+stream = ExtResource("5_osxpc")
+
+[node name="ClickS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=529325602]
+stream = ExtResource("6_5gfs0")
+
+[node name="BgmS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=382781131]
+stream = ExtResource("7_5gfs0")
+
+[node name="Bar" type="ColorRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1255465859]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_teh6h")
+layout_mode = 2
+color = Color(0, 0.9411765, 1, 1)
+
+[node name="PlayB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1254868230]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_teh6h")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_n43y7")
+text = "Play"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("5_wdwbw")
+
+[node name="OptionsB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=893589744]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_teh6h")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_n43y7")
+text = "Options"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("5_wdwbw")
+
+[node name="ExitB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=388409595]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("4_teh6h")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_n43y7")
+text = "Exit"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("5_wdwbw")
