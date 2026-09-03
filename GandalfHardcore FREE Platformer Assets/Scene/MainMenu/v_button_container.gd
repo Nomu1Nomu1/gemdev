@@ -47,8 +47,6 @@ func _on_button_pressed(clicked_btn: Button) -> void:
 		click_sfx.play()
 	
 	if clicked_btn.text.to_lower() == "play" or "play" in clicked_btn.name.to_lower():
-		print("Tombol play terdeteksi, mulai fade out...")
-	
 		for child in get_children():
 			if child is Button:
 				child.disabled = true

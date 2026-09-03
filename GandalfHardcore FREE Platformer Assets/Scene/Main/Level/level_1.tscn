@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bedbfgmg6vjrr"]
+
+[ext_resource type="Script" uid="uid://bko84hl2bx62r" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/Level/level_1.gd" id="1_0oni7"]
+[ext_resource type="PackedScene" uid="uid://c0dkh7duj3a41" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/pause_menu.tscn" id="2_e7uj3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7af7"]
+size = Vector2(1200, 40)
+
+[node name="Level1" type="Node2D" unique_id=809252419]
+script = ExtResource("1_0oni7")
+
+[node name="Enviroment" type="Node2D" parent="." unique_id=165082990]
+
+[node name="Floor" type="StaticBody2D" parent="Enviroment" unique_id=635923922]
+position = Vector2(320, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Floor" unique_id=1904615171]
+shape = SubResource("RectangleShape2D_c7af7")
+
+[node name="ColorRect" type="ColorRect" parent="Enviroment/Floor" unique_id=912553275]
+offset_left = -600.0
+offset_top = -20.0
+offset_right = 600.0
+offset_bottom = 20.0
+color = Color(0.11764706, 0.1254902, 0.14117648, 1)
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=28363923]
+position = Vector2(120, 250)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1535305672]
+position_smoothing_enabled = true
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=225219323]
+layer = 10
+
+[node name="PauseMenu" parent="UILayer" unique_id=1908251114 instance=ExtResource("2_e7uj3")]
