@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://b7xks8l2tgy58"]
 
 [ext_resource type="Script" uid="uid://doguf5beqk3vo" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/character_select.gd" id="1_22ng4"]
-[ext_resource type="PackedScene" uid="uid://lynkh7eesbbf" path="res://GandalfHardcore FREE Platformer Assets/Sprites/player_sword.tscn" id="1_a28jn"]
 [ext_resource type="Shader" uid="uid://bfdgxlgs5d8pu" path="res://GandalfHardcore FREE Platformer Assets/Scene/Shaders/loadout_card.gdshader" id="2_aop4h"]
 [ext_resource type="FontFile" uid="uid://blf0ofaqt4216" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ThaleahFat.ttf" id="2_dp5i0"]
 [ext_resource type="AudioStream" uid="uid://bi3a15qgtqyvi" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/HoverSound.mp3" id="2_h6c7n"]
 [ext_resource type="AudioStream" uid="uid://b87pwxiiioo7n" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/ClickSound.mp3" id="3_22ng4"]
+[ext_resource type="PackedScene" uid="uid://ctrrik22h2sj8" path="res://GandalfHardcore FREE Platformer Assets/Sprites/vanguard.tscn" id="4_aop4h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aop4h"]
 shader = ExtResource("2_aop4h")
@@ -133,9 +133,9 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="player_sword" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer/SpriteContainer" unique_id=981119401 instance=ExtResource("1_a28jn")]
+[node name="player_sword" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer/SpriteContainer" unique_id=1752894655 instance=ExtResource("4_aop4h")]
 texture_filter = 1
-position = Vector2(80, 30)
+position = Vector2(75, 25)
 scale = Vector2(1.5, 1.5)
 
 [node name="Divider" type="ColorRect" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=690392415]
@@ -216,9 +216,9 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="player_sword" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer/SpriteContainer" unique_id=186965292 instance=ExtResource("1_a28jn")]
+[node name="player_sword" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer/SpriteContainer" unique_id=1629059543 instance=ExtResource("4_aop4h")]
 texture_filter = 1
-position = Vector2(80, 30)
+position = Vector2(75, 25)
 scale = Vector2(1.5, 1.5)
 
 [node name="Divider" type="ColorRect" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=842065090]
