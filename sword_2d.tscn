@@ -20,6 +20,7 @@ size = Vector2(74, 7.5)
 size = Vector2(129, 17)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wall"]
+distance = 35.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5cu0"]
 texture = ExtResource("8_vn0ru")

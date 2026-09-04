@@ -44,4 +44,3 @@ func _spawn_enemies() -> void:
 			var enemy = spawn_info["scene"].instantiate()
 			enemy.global_position = spawn_info["pos"]
 			add_child(enemy)
-
