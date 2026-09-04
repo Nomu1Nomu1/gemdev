@@ -92,6 +92,7 @@ func _start_boss_intro(player: Node2D) -> void:
 
 	# 5. Hubungkan UI Bar Bos
 	var boss_ui = get_tree().get_first_node_in_group("boss_ui")
+	print("DEBUG: Status boss_ui -> ", boss_ui) # <-- Tambahkan print ini
 	if boss_ui and boss_instance:
 		boss_ui.activate_boss_bar("EXECUTIONER", boss_instance.max_health)
 		if boss_instance.has_signal("hp_changed"):

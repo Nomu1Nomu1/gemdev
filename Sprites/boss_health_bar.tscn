@@ -14,7 +14,7 @@ border_color = Color(0.2901961, 0.2901961, 0.3529412, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7af7"]
 bg_color = Color(0.54509807, 0.08235294, 0.08235294, 1)
 
-[node name="BossHealthBar" type="CanvasLayer" unique_id=666142095]
+[node name="BossHealthBar" type="CanvasLayer" unique_id=666142095 groups=["boss_ui"]]
 script = ExtResource("1_whquq")
 
 [node name="BossUIContainer" type="Control" parent="." unique_id=875472041]
