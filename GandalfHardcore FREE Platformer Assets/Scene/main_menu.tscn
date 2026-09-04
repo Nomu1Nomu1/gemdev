@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://odl2ja4xn70t"]
+[gd_scene format=3 uid="uid://csdvensrumfig"]
 
-[ext_resource type="Texture2D" uid="uid://c3ibqu76qj6fe" path="res://Scene/MainMenu/Background/miklaws-background.png" id="1_osxpc"]
-[ext_resource type="FontFile" uid="uid://dbaoehkuhp4ky" path="res://Scene/MainMenu/Font/ApexMk2-BoldExtended.otf" id="3_q55ea"]
-[ext_resource type="Script" uid="uid://naof4v6ya0ib" path="res://Scene/MainMenu/v_button_container.gd" id="4_ot4bh"]
-[ext_resource type="FontFile" uid="uid://blf0ofaqt4216" path="res://Scene/MainMenu/Font/ThaleahFat.ttf" id="4_teh6h"]
-[ext_resource type="AudioStream" uid="uid://bi3a15qgtqyvi" path="res://Scene/MainMenu/Sound/HoverSound.mp3" id="5_osxpc"]
-[ext_resource type="Script" uid="uid://b5xdj0xp82bv6" path="res://Scene/MainMenu/menu_button.gd" id="5_wdwbw"]
-[ext_resource type="AudioStream" uid="uid://b87pwxiiioo7n" path="res://Scene/MainMenu/Sound/ClickSound.mp3" id="6_5gfs0"]
-[ext_resource type="Shader" uid="uid://cs4hp5o627f5y" path="res://Scene/MainMenu/main_menu.gdshader" id="6_q55ea"]
-[ext_resource type="AudioStream" uid="uid://djmcadod1mcsx" path="res://Scene/MainMenu/Sound/BGM.mp3" id="7_5gfs0"]
+[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/miklaws-background.png" id="1_lrw72"]
+[ext_resource type="FontFile" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ApexMk2-BoldExtended.otf" id="2_me3x1"]
+[ext_resource type="Script" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/v_button_container.gd" id="3_5n6ls"]
+[ext_resource type="AudioStream" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/HoverSound.mp3" id="4_b8ky4"]
+[ext_resource type="AudioStream" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/ClickSound.mp3" id="5_a0e0a"]
+[ext_resource type="AudioStream" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/BGM.mp3" id="6_f0g03"]
+[ext_resource type="Shader" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/main_menu.gdshader" id="7_0vu4q"]
+[ext_resource type="FontFile" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ThaleahFat.ttf" id="8_hfg84"]
+[ext_resource type="Script" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/menu_button.gd" id="9_3r02m"]
 
 [sub_resource type="Gradient" id="Gradient_osxpc"]
 colors = PackedColorArray(0, 0, 0, 0.8627451, 0, 0, 0, 0)
@@ -18,11 +18,11 @@ gradient = SubResource("Gradient_osxpc")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jtm4"]
-shader = ExtResource("6_q55ea")
-shader_parameter/bg_color = Color(0.06, 0.42, 0.62, 0.65)
-shader_parameter/border_color = Color(0.18, 0.78, 0.95, 1)
-shader_parameter/corner_cut = 4.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_teh6h"]
+shader = ExtResource("7_0vu4q")
+shader_parameter/bg_color = Color(0.2901961, 0.039215688, 0.078431375, 1)
+shader_parameter/border_color = Color(1, 0.16470589, 0.29411766, 1)
+shader_parameter/corner_cut = 3.0
 shader_parameter/border_size = 1.0
 shader_parameter/fade_end = 0.65
 
@@ -44,7 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_osxpc")
+texture = ExtResource("1_lrw72")
 expand_mode = 1
 
 [node name="RightShadowOverlay" type="TextureRect" parent="Background" unique_id=752390601]
@@ -102,7 +102,7 @@ theme_override_colors/font_shadow_color = Color(1, 0.16470589, 0.29411766, 1)
 theme_override_colors/font_outline_color = Color(0.23921569, 0.02745098, 0.0627451, 1)
 theme_override_constants/outline_size = 20
 theme_override_constants/shadow_outline_size = 30
-theme_override_fonts/font = ExtResource("3_q55ea")
+theme_override_fonts/font = ExtResource("2_me3x1")
 theme_override_font_sizes/font_size = 32
 text = "domau"
 horizontal_alignment = 2
@@ -119,20 +119,20 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 8
-script = ExtResource("4_ot4bh")
+script = ExtResource("3_5n6ls")
 
 [node name="HoverS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=544641748]
-stream = ExtResource("5_osxpc")
+stream = ExtResource("4_b8ky4")
 
 [node name="ClickS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=529325602]
-stream = ExtResource("6_5gfs0")
+stream = ExtResource("5_a0e0a")
 
 [node name="BgmS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=382781131]
-stream = ExtResource("7_5gfs0")
+stream = ExtResource("6_f0g03")
 
 [node name="Bar" type="ColorRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1255465859]
 show_behind_parent = true
-material = SubResource("ShaderMaterial_7jtm4")
+material = SubResource("ShaderMaterial_teh6h")
 layout_mode = 2
 color = Color(0, 0.9411765, 1, 1)
 
@@ -143,13 +143,13 @@ theme_type_variation = &"FlatButton"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("4_teh6h")
+theme_override_fonts/font = ExtResource("8_hfg84")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxEmpty_osxpc")
 text = "Play"
 alignment = 2
 autowrap_trim_flags = 0
-script = ExtResource("5_wdwbw")
+script = ExtResource("9_3r02m")
 
 [node name="OptionsB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=893589744]
 custom_minimum_size = Vector2(0, 15)
@@ -158,13 +158,13 @@ theme_type_variation = &"FlatButton"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("4_teh6h")
+theme_override_fonts/font = ExtResource("8_hfg84")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxEmpty_osxpc")
 text = "Options"
 alignment = 2
 autowrap_trim_flags = 0
-script = ExtResource("5_wdwbw")
+script = ExtResource("9_3r02m")
 
 [node name="ExitB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=388409595]
 custom_minimum_size = Vector2(0, 15)
@@ -173,13 +173,13 @@ theme_type_variation = &"FlatButton"
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("4_teh6h")
+theme_override_fonts/font = ExtResource("8_hfg84")
 theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxEmpty_osxpc")
 text = "Exit"
 alignment = 2
 autowrap_trim_flags = 0
-script = ExtResource("5_wdwbw")
+script = ExtResource("9_3r02m")
 
 [node name="S" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1914678529]
 layout_mode = 2

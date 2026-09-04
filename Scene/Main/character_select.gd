@@ -114,10 +114,10 @@ func _on_card_pressed(card: Button, weapon_type: GameManager.WeaponType) -> void
 	
 	await get_tree().create_timer(0.4).timeout
 	
-	if ResourceLoader.exists("res://level_1.tscn"):
-		SceneTransition.change_scene("res://level_1.tscn", 0.5)
+	if ResourceLoader.exists("res://Scene/Main/Level/level_1.tscn"):
+		SceneTransition.change_scene("res://Scene/Main/Level/level_1.tscn", 0.5)
 	else:
-		get_tree().change_scene_to_file("res://level_1.tscn")
+		get_tree().change_scene_to_file("res://Scene/Main/Level/level_1.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and not is_locked:

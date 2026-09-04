@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*uid://dgvcq01nuud1f"
 SceneTransition="*uid://bp2aigdy1if2n"
+GameManager="*uid://dgvcq01nuud1f"
 
 [display]
 
