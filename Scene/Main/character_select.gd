@@ -122,6 +122,7 @@ func _on_card_pressed(card: Button, weapon_type: GameManager.WeaponType) -> void
 	await get_tree().create_timer(0.4).timeout
 	
 	var target_scene: String = LEVEL_SCENES.get(weapon_type, "res://sword_2d.tscn")
+	GameManager.last_played_level = target_scene
 	if ResourceLoader.exists(target_scene):
 		SceneTransition.change_scene(target_scene, 0.5)
 	else:

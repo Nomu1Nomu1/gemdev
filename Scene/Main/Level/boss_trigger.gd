@@ -23,6 +23,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _start_boss_intro(player: Node2D) -> void:
 	# 1. Bekukan player
+	if "can_move" in player:
+		player.can_move = false
 	player.set_physics_process(false)
 	if "velocity" in player:
 		player.velocity = Vector2.ZERO
@@ -79,4 +81,7 @@ func _start_boss_intro(player: Node2D) -> void:
 		await get_tree().create_timer(0.8).timeout
 
 	# 5. Lepas kunci player (bisa jalan lagi)
+	if "can_move" in player:
+		player.can_move = true
 	player.set_physics_process(true)
+

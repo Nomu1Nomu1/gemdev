@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://bi3a15qgtqyvi" path="res://Scene/MainMenu/Sound/HoverSound.mp3" id="2_h6c7n"]
 [ext_resource type="AudioStream" uid="uid://b87pwxiiioo7n" path="res://Scene/MainMenu/Sound/ClickSound.mp3" id="3_22ng4"]
 [ext_resource type="PackedScene" uid="uid://ctrrik22h2sj8" path="res://Sprites/vanguard.tscn" id="4_aop4h"]
+[ext_resource type="PackedScene" uid="uid://dvww0f21vvxwv" path="res://Sprites/archer.tscn" id="5_archer"]
+
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aop4h"]
 shader = ExtResource("2_aop4h")
@@ -202,21 +204,21 @@ theme_override_constants/separation = 4
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9411765, 0.9490196, 0.9607843, 1)
 theme_override_font_sizes/font_size = 11
-text = "THE VANGUARD"
+text = "THE ARCHER"
 horizontal_alignment = 1
 
 [node name="WeaponSub" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=364620822]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.36078432, 0.43137255, 1)
 theme_override_font_sizes/font_size = 9
-text = "[ GREATSWORD ]"
+text = "[ RECURVE BOW ]"
 horizontal_alignment = 1
 
 [node name="SpriteContainer" type="CenterContainer" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=226591792]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="player_sword" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer/SpriteContainer" unique_id=1629059543 instance=ExtResource("4_aop4h")]
+[node name="archer" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer/SpriteContainer" unique_id=1629059543 instance=ExtResource("5_archer")]
 texture_filter = 1
 position = Vector2(75, 25)
 scale = Vector2(1.5, 1.5)
@@ -230,21 +232,21 @@ color = Color(0.47843137, 0.08627451, 0.12941177, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
 theme_override_font_sizes/font_size = 7
-text = "STYLE: MELEE SLASHER"
+text = "STYLE: RANGED MARKSMAN"
 horizontal_alignment = 1
 
 [node name="StatLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=1929218626]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
 theme_override_font_sizes/font_size = 7
-text = "ATK: HIGH  |  DEF: HEAVY"
+text = "ATK: PIERCING  |  DEF: LIGHT"
 horizontal_alignment = 1
 
 [node name="PerkLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=2027413682]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.23137255, 0.1882353, 1)
 theme_override_font_sizes/font_size = 7
-text = "CRIT ON 3RD COMBO HIT"
+text = "RAPID VOLLEY & MOBILITY"
 horizontal_alignment = 1
 
 [node name="SpacerBot" type="Control" parent="MarginContainer/CenterUI" unique_id=1762677855]

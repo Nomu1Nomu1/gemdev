@@ -1006,7 +1006,7 @@ texture = ExtResource("6_kdubu")
 7:31/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_jq8tk"]
-sources/0 = SubResource("TileSetAtlasSource_d21ai")
+sources/0 = SubResource("TileSetAtlasSource_kdubu")
 
 [node name="Main Place" type="Node2D" unique_id=1802350946]
 script = ExtResource("7_archerscript")
@@ -1072,7 +1072,7 @@ scale = Vector2(1.1387283, 1.1387283)
 texture = ExtResource("4_d21ai")
 
 [node name="Ground" type="TileMap" parent="." unique_id=877776620]
-tile_set = SubResource("TileSet_3xd07")
+tile_set = SubResource("TileSet_jq8tk")
 format = 2
 layer_0/name = "ground"
 layer_0/z_index = 1

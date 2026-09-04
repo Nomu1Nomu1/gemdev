@@ -8,6 +8,8 @@ extends Node2D
 const PLAYER_SCENE = preload("res://Sprites/player_sword.tscn")
 
 func _ready() -> void:
+	if GameManager:
+		GameManager.last_played_level = scene_file_path
 	_spawn_player()
 
 func _spawn_player() -> void:
@@ -18,3 +20,12 @@ func _spawn_player() -> void:
 	var player = PLAYER_SCENE.instantiate()
 	player.global_position = spawn_point.global_position
 	add_child(player)
+
+	var camera: Camera2D = player.get_node_or_null("Camera2D")
+	if camera:
+		camera.limit_left = 0
+		camera.limit_top = 0
+		camera.limit_right = 1200
+		camera.limit_bottom = 650
+		camera.reset_smoothing()
+

@@ -6,6 +6,8 @@ extends Node2D
 const PLAYER_SCENE = preload("res://Sprites/player_sword.tscn")
 
 func _ready() -> void:
+	if GameManager:
+		GameManager.last_played_level = scene_file_path
 	_spawn_player()
 
 func _spawn_player() -> void:

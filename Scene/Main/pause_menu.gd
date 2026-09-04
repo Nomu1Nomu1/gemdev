@@ -48,7 +48,9 @@ func _on_button_pressed(btn: Button) -> void:
 	
 	var label = btn.text.strip_edges().to_lower()
 	
-	if "restart" in label:
+	if "resume" in label:
+		_resume_game()
+	elif "restart" in label:
 		_restart_level()
 	elif "menu" in label:
 		_to_main_menu()
@@ -57,15 +59,25 @@ func _on_button_pressed(btn: Button) -> void:
 
 func _resume_game() -> void:
 	get_tree().paused = false
-	owner.hide()
+	if owner:
+		owner.hide()
+	else:
+		hide()
 
 func _restart_level() -> void:
 	get_tree().paused = false
-	get_tree().reload_current_scene()
+	if GameManager and "last_played_level" in GameManager and GameManager.last_played_level != "":
+		GameManager.restart_current_level()
+	else:
+		get_tree().reload_current_scene()
 
 func _to_main_menu() -> void:
 	get_tree().paused = false
-	SceneTransition.change_scene("res://Scene/MainMenu/main_menu.tscn", 0.4)
+	if has_node("/root/SceneTransition"):
+		get_node("/root/SceneTransition").change_scene("res://Scene/MainMenu/main_menu.tscn", 0.4)
+	else:
+		get_tree().change_scene_to_file("res://Scene/MainMenu/main_menu.tscn")
 
 func _quit_game() -> void:
 	get_tree().quit()
+

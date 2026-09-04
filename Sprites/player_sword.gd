@@ -257,7 +257,8 @@ func _die() -> void:
 
 	# Jeda sebelum reset scene
 	await get_tree().create_timer(0.5).timeout
-	if Engine.has_singleton("SceneTransition"):
-		SceneTransition.change_scene("res://Scene/gameover_screen.tscn", 0.4)
+	if has_node("/root/SceneTransition"):
+		get_node("/root/SceneTransition").change_scene("res://Scene/gameover_screen.tscn", 0.4)
 	elif get_tree():
 		get_tree().change_scene_to_file("res://Scene/gameover_screen.tscn")
+

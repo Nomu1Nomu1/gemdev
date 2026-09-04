@@ -6,15 +6,18 @@ extends Node2D
 const PLAYER_SCENE = preload("res://Sprites/player_sword.tscn")
 
 func _ready() -> void:
+	if GameManager:
+		GameManager.last_played_level = scene_file_path
 	_spawn_player()
 
 func _spawn_player() -> void:
 	if not PLAYER_SCENE:
-		push_error("Error: Scene res://player.tscn tidak ditemukan!")
+		push_error("Error: Scene res://Sprites/player_sword.tscn tidak ditemukan!")
 		return
 		
 	# Instantiate player dan posisikan di SpawnPoint
 	var player = PLAYER_SCENE.instantiate()
 	player.global_position = spawn_point.global_position
 	add_child(player)
+
 	
