@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bedbfgmg6vjrr"]
 
+<<<<<<< HEAD:Scene/Main/Level/level_1.tscn
 [ext_resource type="Script" uid="uid://bko84hl2bx62r" path="res://Scene/Main/Level/level_1.gd" id="1_0oni7"]
 [ext_resource type="PackedScene" uid="uid://c0dkh7duj3a41" path="res://Scene/Main/pause_menu.tscn" id="2_e7uj3"]
 [ext_resource type="Texture2D" uid="uid://bolqewrdl0nqs" path="res://Scene/MainMenu/Background/background.png" id="2_w3yvd"]
@@ -12,6 +13,21 @@
 [ext_resource type="Texture2D" uid="uid://c2vjdxrrmkxsm" path="res://Scene/MainMenu/Background/props-sliced/well.png" id="9_p1j7f"]
 [ext_resource type="Script" uid="uid://b3oiupewjcknh" path="res://Scene/Main/Level/boss_trigger.gd" id="11_wttoi"]
 [ext_resource type="PackedScene" uid="uid://cx422csmgnebh" path="res://Sprites/executioner_boss.tscn" id="13_sltvl"]
+=======
+[ext_resource type="Script" uid="uid://bko84hl2bx62r" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/Level/level_1.gd" id="1_0oni7"]
+[ext_resource type="PackedScene" uid="uid://c0dkh7duj3a41" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/pause_menu.tscn" id="2_e7uj3"]
+[ext_resource type="Texture2D" uid="uid://bolqewrdl0nqs" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/background.png" id="2_w3yvd"]
+[ext_resource type="Texture2D" uid="uid://dxcn2q14d7tj8" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/middleground.png" id="3_gcpmv"]
+[ext_resource type="Texture2D" uid="uid://brsfmcctnv83" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/props-sliced/chuch.png" id="4_hpgsk"]
+[ext_resource type="Texture2D" uid="uid://cw3h0c3r3fqns" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/props-sliced/house-a.png" id="5_wttoi"]
+[ext_resource type="Texture2D" uid="uid://dx60k10kv6r7r" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/props-sliced/house-b.png" id="6_uq586"]
+[ext_resource type="Texture2D" uid="uid://bqws2rjn44xwo" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/props-sliced/house-c.png" id="7_peebt"]
+[ext_resource type="Texture2D" uid="uid://4fkurfgomlr2" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/props-sliced/street-lamp.png" id="8_sltvl"]
+[ext_resource type="Texture2D" uid="uid://c2vjdxrrmkxsm" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/props-sliced/well.png" id="9_p1j7f"]
+[ext_resource type="Script" uid="uid://b3oiupewjcknh" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/Level/boss_trigger.gd" id="11_wttoi"]
+[ext_resource type="PackedScene" uid="uid://c28kds266kjr8" path="res://GandalfHardcore FREE Platformer Assets/Sprites/boss_health_bar.tscn" id="13_peebt"]
+[ext_resource type="PackedScene" uid="uid://cx422csmgnebh" path="res://GandalfHardcore FREE Platformer Assets/Sprites/executioner_boss.tscn" id="13_sltvl"]
+>>>>>>> Develop:GandalfHardcore FREE Platformer Assets/Scene/Main/Level/level_1.tscn
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7af7"]
 size = Vector2(3000, 40)
@@ -129,5 +145,7 @@ shape = SubResource("RectangleShape2D_1akr1")
 
 [node name="BossSpawnPoint" type="Marker2D" parent="." unique_id=508905364]
 position = Vector2(1200, 270)
+
+[node name="BossHealthBar" parent="." unique_id=666142095 groups=["boss_ui"] instance=ExtResource("13_peebt")]
 
 [connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]

@@ -209,31 +209,35 @@ func take_damage(amount: int, attacker: Node2D = null) -> void:
 	if current_health <= 0:
 		_die()
 
-# --- Penanganan Kematian Karakter ---
 func _die() -> void:
 	is_dead = true
 	can_move = false
 	velocity = Vector2.ZERO
 	set_physics_process(false)
 	
-	# Matikan tabrakan agar tidak terus terbentur/terdorong musuh
 	if collision_shape:
 		collision_shape.set_deferred("disabled", true)
 	if attack_shape:
 		attack_shape.set_deferred("disabled", true)
 
-	# Mainkan animasi mati jika tersedia, atau efek fallback
+	# --- EFEK KAMERA DEKATI PEMAIN ---
+	var camera: Camera2D = get_viewport().get_camera_2d()
+	if camera:
+		var cam_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		# Dekatkan kamera (zoom in) dan pusatkan ke tubuh player
+		cam_tween.tween_property(camera, "zoom", Vector2(1.6, 1.6), 0.6)
+		cam_tween.tween_property(camera, "offset", Vector2(0, -10), 0.6)
+
+	# Mainkan animasi mati
 	if anim.has_animation("Death") or anim.has_animation("death"):
 		var death_anim = "Death" if anim.has_animation("Death") else "death"
 		anim.play(death_anim)
 		await anim.animation_finished
 	else:
-		# Jika belum ada animasi mati, buat karakter berkedip merah dan memudar
 		var death_tween = create_tween()
 		death_tween.tween_property(visuals, "modulate", Color.RED, 0.2)
 		death_tween.tween_property(visuals, "modulate:a", 0.0, 0.8)
 		await death_tween.finished
 
-	# Jeda sebelum reset scene
-	await get_tree().create_timer(0.5).timeout
-	SceneTransition.change_scene("res://GandalfHardcore FREE Platformer Assets/Scene/gameover_screen.tscn", 0.4)
+		await get_tree().create_timer(1.0).timeout
+		SceneTransition.change_scene("res://GandalfHardcore FREE Platformer Assets/Scene/gameover_screen.tscn", 0.4)
