@@ -1,8 +1,8 @@
 class_name BaseBoss
 extends CharacterBody2D
 
-signal boss_hp_changed(current_hp: int, max_hp: int)
-signal boss_defeated
+signal hp_changed(current_hp: int)
+signal boss_died
 
 @export var boss_name: String = "Boss Name"
 @export var max_health: int = 100
@@ -19,7 +19,7 @@ func take_damage(amount: int, _attacker: Node2D = null) -> void:
 		return
 	
 	current_health = max(0, current_health - amount)
-	boss_hp_changed.emit(current_health, max_health)
+	hp_changed.emit(current_health)
 	
 	# Efek kedip merah saat terkena serangan
 	var tw = create_tween()
@@ -31,5 +31,5 @@ func take_damage(amount: int, _attacker: Node2D = null) -> void:
 
 func _die() -> void:
 	is_dead = true
-	boss_defeated.emit()
+	boss_died.emit()
 	set_physics_process(false)

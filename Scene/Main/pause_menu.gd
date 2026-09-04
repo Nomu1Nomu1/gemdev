@@ -60,7 +60,7 @@ func _restart_game() -> void:
 
 func _to_main_menu() -> void:
 	get_tree().paused = false
-	SceneTransition.change_scene("res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/main_menu.tscn", 0.4)
+	SceneTransition.change_scene("res://Scene/MainMenu/main_menu.tscn", 0.4)
 
 func _quit_game() -> void:
 	get_tree().quit()

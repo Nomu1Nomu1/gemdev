@@ -44,11 +44,17 @@ func _start_boss_intro(player: Node2D) -> void:
 
 	get_parent().add_child(boss_instance)
 
+	# Berikan referensi player & bangunkan AI bos
+	boss_instance.player = player
+	if boss_instance.has_method("wakeup_boss"):
+		boss_instance.wakeup_boss()
+
 	# 3. Pindah ke Kamera Bos
 	var boss_cam: Camera2D = boss_instance.get_node_or_null("BossCamera")
 
 	if boss_cam:
 		# Aktifkan pergerakan halus bawaan Godot
+		boss_cam.enabled = true	
 		boss_cam.position_smoothing_enabled = true
 		boss_cam.position_smoothing_speed = 4.0 # Angka makin kecil makin lambat & sinematik
 		boss_cam.make_current()
@@ -56,7 +62,7 @@ func _start_boss_intro(player: Node2D) -> void:
 		# Beri waktu kamera meluncur ke arah bos
 		await get_tree().create_timer(0.8).timeout
 
-		# Efek Shake menggunakan Tween bawaanmu yang sudah aman
+		# Efek Shake menggunakan Tween
 		var shake_tween = create_tween()
 		for i in range(10):
 			var offset_val = Vector2(randf_range(-7.0, 7.0), randf_range(-7.0, 7.0))
@@ -81,10 +87,9 @@ func _start_boss_intro(player: Node2D) -> void:
 	var boss_ui = get_tree().get_first_node_in_group("boss_ui")
 	if boss_ui and boss_instance:
 		boss_ui.activate_boss_bar("EXECUTIONER", boss_instance.max_health)
-		# Sambungkan sinyal bos langsung ke fungsi tween UI
+		# Sambungkan sinyal bos ke fungsi UI
 		boss_instance.hp_changed.connect(boss_ui.update_hp)
 		boss_instance.boss_died.connect(boss_ui.hide_boss_bar)
-		
 		
 	# 5. Lepas kunci player (bisa jalan lagi)
 	player.set_physics_process(true)
