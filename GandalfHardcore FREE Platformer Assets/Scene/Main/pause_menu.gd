@@ -49,15 +49,14 @@ func _on_button_pressed(btn: Button) -> void:
 	var label = btn.text.strip_edges().to_lower()
 	
 	if "restart" in label:
-		_resume_game()
+		_restart_game()
 	elif "menu" in label:
 		_to_main_menu()
 	elif "exit" in label:
 		_quit_game()
 
-func _resume_game() -> void:
-	get_tree().paused = false
-	owner.hide()
+func _restart_game() -> void:
+	get_tree().reload_current_scene()
 
 func _to_main_menu() -> void:
 	get_tree().paused = false
