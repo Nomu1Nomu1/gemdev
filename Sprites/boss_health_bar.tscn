@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://c28kds266kjr8"]
+
+[ext_resource type="FontFile" uid="uid://blf0ofaqt4216" path="res://Scene/MainMenu/Font/ThaleahFat.ttf" id="1_6vdb2"]
+[ext_resource type="Script" uid="uid://tbgfy7nai6vr" path="res://Sprites/BossHealthBar.gd" id="1_whquq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1akr1"]
+bg_color = Color(0.6, 0.6, 0.6, 0.74509805)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2901961, 0.2901961, 0.3529412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7af7"]
+bg_color = Color(0.54509807, 0.08235294, 0.08235294, 1)
+
+[node name="BossHealthBar" type="CanvasLayer" unique_id=666142095 groups=["boss_ui"]]
+script = ExtResource("1_whquq")
+
+[node name="BossUIContainer" type="Control" parent="." unique_id=875472041]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BossUIContainer" unique_id=845223100]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -54.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BossName" type="Label" parent="BossUIContainer/VBoxContainer" unique_id=1809236848]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9019608, 0.9019608, 0.9019608, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_6vdb2")
+theme_override_font_sizes/font_size = 12
+text = "EXECUTIONER"
+horizontal_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="BossUIContainer/VBoxContainer" unique_id=1613100150]
+custom_minimum_size = Vector2(320, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_1akr1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c7af7")
+show_percentage = false

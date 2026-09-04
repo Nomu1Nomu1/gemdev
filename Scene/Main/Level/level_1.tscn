@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://bedbfgmg6vjrr"]
+
+[ext_resource type="Script" uid="uid://bko84hl2bx62r" path="res://Scene/Main/Level/level_1.gd" id="1_0oni7"]
+[ext_resource type="PackedScene" uid="uid://c0dkh7duj3a41" path="res://Scene/Main/pause_menu.tscn" id="2_e7uj3"]
+[ext_resource type="Texture2D" uid="uid://bolqewrdl0nqs" path="res://Scene/MainMenu/Background/background.png" id="2_w3yvd"]
+[ext_resource type="Texture2D" uid="uid://dxcn2q14d7tj8" path="res://Scene/MainMenu/Background/middleground.png" id="3_gcpmv"]
+[ext_resource type="Texture2D" uid="uid://brsfmcctnv83" path="res://Scene/MainMenu/Background/props-sliced/chuch.png" id="4_hpgsk"]
+[ext_resource type="Texture2D" uid="uid://cw3h0c3r3fqns" path="res://Scene/MainMenu/Background/props-sliced/house-a.png" id="5_wttoi"]
+[ext_resource type="Texture2D" uid="uid://dx60k10kv6r7r" path="res://Scene/MainMenu/Background/props-sliced/house-b.png" id="6_uq586"]
+[ext_resource type="Texture2D" uid="uid://bqws2rjn44xwo" path="res://Scene/MainMenu/Background/props-sliced/house-c.png" id="7_peebt"]
+[ext_resource type="Texture2D" uid="uid://4fkurfgomlr2" path="res://Scene/MainMenu/Background/props-sliced/street-lamp.png" id="8_sltvl"]
+[ext_resource type="Texture2D" uid="uid://c2vjdxrrmkxsm" path="res://Scene/MainMenu/Background/props-sliced/well.png" id="9_p1j7f"]
+[ext_resource type="Script" uid="uid://b3oiupewjcknh" path="res://Scene/Main/Level/boss_trigger.gd" id="11_wttoi"]
+[ext_resource type="PackedScene" uid="uid://1j7denxhxrkp" path="res://Sprites/mes_boss.tscn" id="12_fvu0s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7af7"]
+size = Vector2(3000, 40)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c7af7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1akr1"]
+
+[node name="Level1" type="Node2D" unique_id=809252419]
+script = ExtResource("1_0oni7")
+metadata/_edit_horizontal_guides_ = [300.0]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1786096019]
+
+[node name="SkyLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=579468169]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(614.4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SkyLayer" unique_id=983735271]
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("2_w3yvd")
+centered = false
+
+[node name="MidLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=170287805]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(614.4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/MidLayer" unique_id=1732190816]
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("3_gcpmv")
+centered = false
+
+[node name="ForeLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1182414770]
+position = Vector2(0, 3)
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(2000, 0)
+
+[node name="Church" type="Sprite2D" parent="ParallaxBackground/ForeLayer" unique_id=953056716]
+position = Vector2(0, -25)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("4_hpgsk")
+centered = false
+
+[node name="H1" type="Sprite2D" parent="ParallaxBackground/ForeLayer" unique_id=26726045]
+position = Vector2(437.00003, 78.00001)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("5_wttoi")
+centered = false
+
+[node name="H2" type="Sprite2D" parent="ParallaxBackground/ForeLayer" unique_id=2098393921]
+position = Vector2(639, 2)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("6_uq586")
+centered = false
+
+[node name="H3" type="Sprite2D" parent="ParallaxBackground/ForeLayer" unique_id=103548927]
+position = Vector2(896.00006, 73.00001)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("7_peebt")
+centered = false
+
+[node name="Lamp" type="Sprite2D" parent="ParallaxBackground/ForeLayer" unique_id=1544696672]
+position = Vector2(477, 178)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("8_sltvl")
+centered = false
+
+[node name="Well" type="Sprite2D" parent="ParallaxBackground/ForeLayer" unique_id=1146934776]
+position = Vector2(623.00006, 230.00002)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("9_p1j7f")
+centered = false
+
+[node name="Enviroment" type="Node2D" parent="." unique_id=165082990]
+
+[node name="Floor" type="StaticBody2D" parent="Enviroment" unique_id=635923922]
+position = Vector2(320, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/Floor" unique_id=1904615171]
+shape = SubResource("RectangleShape2D_c7af7")
+
+[node name="ColorRect" type="ColorRect" parent="Enviroment/Floor" unique_id=912553275]
+offset_left = -1500.0
+offset_top = -20.0
+offset_right = 1500.0
+offset_bottom = 20.0
+color = Color(0.11764706, 0.1254902, 0.14117648, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftWall" type="StaticBody2D" parent="Enviroment" unique_id=2124660981]
+position = Vector2(-2, 300)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enviroment/LeftWall" unique_id=10701105]
+shape = SubResource("WorldBoundaryShape2D_c7af7")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=28363923]
+position = Vector2(136, 238)
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=225219323]
+layer = 10
+
+[node name="PauseMenu" parent="UILayer" unique_id=1908251114 instance=ExtResource("2_e7uj3")]
+
+[node name="BossTrigger" type="Area2D" parent="." unique_id=1636040074 node_paths=PackedStringArray("spawn_point")]
+collision_mask = 4
+script = ExtResource("11_wttoi")
+boss_scene = ExtResource("12_fvu0s")
+spawn_point = NodePath("../BossSpawnPoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossTrigger" unique_id=952864298]
+position = Vector2(1000, 0)
+scale = Vector2(1, 30.185)
+shape = SubResource("RectangleShape2D_1akr1")
+
+[node name="BossSpawnPoint" type="Marker2D" parent="." unique_id=508905364]
+position = Vector2(1254, 275)
+
+[connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]

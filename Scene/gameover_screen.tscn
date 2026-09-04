@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://btbqvrjx4ttd"]
+[gd_scene format=3 uid="uid://c3u6cna072tng"]
 
 [ext_resource type="Shader" uid="uid://ibow1si42wmh" path="res://BlurShader.gdshader" id="1_g8d0f"]
 [ext_resource type="FontFile" uid="uid://dbaoehkuhp4ky" path="res://Scene/MainMenu/Font/ApexMk2-BoldExtended.otf" id="2_pegdk"]
