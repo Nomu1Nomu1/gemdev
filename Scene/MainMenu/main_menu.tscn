@@ -18,11 +18,11 @@ gradient = SubResource("Gradient_osxpc")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jtm4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_teh6h"]
 shader = ExtResource("6_q55ea")
-shader_parameter/bg_color = Color(0.06, 0.42, 0.62, 0.65)
-shader_parameter/border_color = Color(0.18, 0.78, 0.95, 1)
-shader_parameter/corner_cut = 4.0
+shader_parameter/bg_color = Color(0.2901961, 0.039215688, 0.078431375, 1)
+shader_parameter/border_color = Color(1, 0.16470589, 0.29411766, 1)
+shader_parameter/corner_cut = 3.0
 shader_parameter/border_size = 1.0
 shader_parameter/fade_end = 0.65
 
@@ -132,7 +132,7 @@ stream = ExtResource("7_5gfs0")
 
 [node name="Bar" type="ColorRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1255465859]
 show_behind_parent = true
-material = SubResource("ShaderMaterial_7jtm4")
+material = SubResource("ShaderMaterial_teh6h")
 layout_mode = 2
 color = Color(0, 0.9411765, 1, 1)
 

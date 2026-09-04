@@ -36,18 +36,25 @@ var is_shield_broken: bool = false
 var is_attacking: bool = false
 var is_blocking: bool = false
 var default_shield_pos: Vector2
+var _hit_targets_in_swing: Array[Node] = []
 
 func _ready() -> void:
+	if not is_in_group("player"):
+		add_to_group("player")
+	
 	current_health = max_health
 	current_shield_stamina = max_shield_stamina
 	default_shield_pos = shield.position
 	
-	health_bar.max_value = max_health
-	health_bar.value = current_health
-	shield_bar.max_value = max_shield_stamina
-	shield_bar.value = current_shield_stamina
+	if health_bar:
+		health_bar.max_value = max_health
+		health_bar.value = current_health
+	if shield_bar:
+		shield_bar.max_value = max_shield_stamina
+		shield_bar.value = current_shield_stamina
 	
 	attack_shape.disabled = true
+	attack_area.collision_mask = 2 # Detect enemies on layer 2
 	
 	anim.animation_finished.connect(_on_animation_finished)
 	attack_area.body_entered.connect(_on_attack_body_hit)
@@ -156,24 +163,44 @@ func _play_anim(anim_name: String) -> void:
 func _start_attack() -> void:
 	is_attacking = true
 	velocity.x = 0
+	_hit_targets_in_swing.clear()
+	if attack_shape:
+		attack_shape.disabled = false
+	if attack_area:
+		for b in attack_area.get_overlapping_bodies():
+			_deal_attack_damage(b)
 	_play_anim("Attack")
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if str(anim_name).to_lower() == "attack":
 		is_attacking = false
+		if attack_shape:
+			attack_shape.disabled = true
+		_hit_targets_in_swing.clear()
 
 # --- Deteksi Serangan Mengenai Objek Lain ---
-func _on_attack_body_hit(body: Node2D) -> void:
-	if body != self:
-		if body.has_method("take_damage"):
-			body.take_damage(10, self)
-			
-			# Restore stamina tameng saat tebasan berhasil mengenai musuh
-			current_shield_stamina = min(current_shield_stamina + shield_hit_restore, max_shield_stamina)
+func _deal_attack_damage(target: Node2D) -> void:
+	if not is_attacking or target == null or target == self:
+		return
+	if _hit_targets_in_swing.has(target):
+		return
+	_hit_targets_in_swing.append(target)
+	
+	if target.has_method("take_damage"):
+		target.take_damage(15, self)
+		
+		# Restore stamina tameng saat tebasan berhasil mengenai musuh
+		current_shield_stamina = min(current_shield_stamina + shield_hit_restore, max_shield_stamina)
+		if shield_bar:
 			shield_bar.value = current_shield_stamina
 
-func _on_attack_hit(_area: Area2D) -> void:
-	pass
+func _on_attack_body_hit(body: Node2D) -> void:
+	_deal_attack_damage(body)
+
+func _on_attack_hit(area: Area2D) -> void:
+	var target = area.owner if area.owner else area.get_parent()
+	if target is Node2D:
+		_deal_attack_damage(target)
 
 # --- Logika Menerima Serangan ---
 func take_damage(amount: int, attacker: Node2D = null) -> void:
@@ -204,17 +231,20 @@ func take_damage(amount: int, attacker: Node2D = null) -> void:
 		current_health -= amount
 
 	current_health = max(current_health, 0)
-	health_bar.value = current_health
+	if health_bar:
+		health_bar.value = current_health
 
 	if current_health <= 0:
 		_die()
 
+# --- Penanganan Kematian Karakter ---
 func _die() -> void:
 	is_dead = true
 	can_move = false
 	velocity = Vector2.ZERO
 	set_physics_process(false)
 	
+	# Matikan tabrakan agar tidak terus terbentur/terdorong musuh
 	if collision_shape:
 		collision_shape.set_deferred("disabled", true)
 	if attack_shape:
@@ -233,16 +263,15 @@ func _die() -> void:
 		anim.play(death_anim)
 		await anim.animation_finished
 	else:
+		# Jika belum ada animasi mati, buat karakter berkedip merah dan memudar
 		var death_tween = create_tween()
 		death_tween.tween_property(visuals, "modulate", Color.RED, 0.2)
 		death_tween.tween_property(visuals, "modulate:a", 0.0, 0.8)
 		await death_tween.finished
 
-	# Jeda sebelum pindah scene (dieksekusi di luar if-else)
-	await get_tree().create_timer(0.3).timeout
-	
+	# Jeda sebelum reset scene
+	await get_tree().create_timer(0.5).timeout
 	if has_node("/root/SceneTransition"):
-		SceneTransition.change_scene("res://Scene/gameover_screen.tscn", 0.4)
-	else:
-		# Cadangan jika autoload SceneTransition belum terdaftar
+		get_node("/root/SceneTransition").change_scene("res://Scene/gameover_screen.tscn", 0.4)
+	elif get_tree():
 		get_tree().change_scene_to_file("res://Scene/gameover_screen.tscn")

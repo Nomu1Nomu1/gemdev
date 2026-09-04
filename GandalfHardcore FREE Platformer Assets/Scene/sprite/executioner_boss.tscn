@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://crprrgcsoj15e"]
 
-[ext_resource type="Script" path="res://GandalfHardcore FREE Platformer Assets/Sprites/executioner_boss.gd" id="1_sw47m"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Enemies/BossExec/attacking.png" id="2_wjvv3"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Enemies/BossExec/death.png" id="3_o54t0"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Enemies/BossExec/idle.png" id="4_yboh4"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Enemies/BossExec/skill1.png" id="5_5q6u6"]
+[ext_resource type="Script" uid="uid://b23macq4prs6o" path="res://Sprites/executioner_boss.gd" id="1_sw47m"]
+[ext_resource type="Texture2D" uid="uid://bxrpamgw6mxjb" path="res://Sprites/Enemies/BossExec/attacking.png" id="2_wjvv3"]
+[ext_resource type="Texture2D" uid="uid://blrd8pfctf05e" path="res://Sprites/Enemies/BossExec/death.png" id="3_o54t0"]
+[ext_resource type="Texture2D" uid="uid://cexvui04adhe5" path="res://Sprites/Enemies/BossExec/idle.png" id="4_yboh4"]
+[ext_resource type="Texture2D" uid="uid://ldf45hwlpags" path="res://Sprites/Enemies/BossExec/skill1.png" id="5_5q6u6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hb0aa"]
 atlas = ExtResource("2_wjvv3")

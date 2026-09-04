@@ -46,12 +46,17 @@ func _on_button_pressed(clicked_btn: Button) -> void:
 	if click_sfx and click_sfx.stream:
 		click_sfx.play()
 	
-	if clicked_btn.text.to_lower() == "play" or "play" in clicked_btn.name.to_lower():
+	var label = clicked_btn.text.to_lower()
+	var btn_name = clicked_btn.name.to_lower()
+	
+	if "play" in label or "play" in btn_name:
 		for child in get_children():
 			if child is Button:
 				child.disabled = true
 				
 		fade_out_bgm(1.2)
+	elif "exit" in label or "exit" in btn_name:
+		get_tree().quit()
 
 func fade_out_bgm(duration: float) -> void:
 	if bgm_music and bgm_music.playing:
@@ -65,7 +70,7 @@ func fade_out_bgm(duration: float) -> void:
 		)
 		bgm_tween.finished.connect(func(): bgm_music.stop())
 
-	SceneTransition.change_scene("res://Scene/Main/character_select.tscn", duration)
+	SceneTransition.change_scene(CHARACTER_SELECT_PATH, duration)
 
 func _move_background_to(target_btn: Button, instant: bool) -> void:
 	var target_pos_y = target_btn.position.y

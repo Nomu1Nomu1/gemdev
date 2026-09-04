@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c28kds266kjr8"]
 
-[ext_resource type="FontFile" uid="uid://blf0ofaqt4216" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ThaleahFat.ttf" id="1_6vdb2"]
-[ext_resource type="Script" uid="uid://tbgfy7nai6vr" path="res://GandalfHardcore FREE Platformer Assets/Sprites/BossHealthBar.gd" id="1_whquq"]
+[ext_resource type="FontFile" uid="uid://blf0ofaqt4216" path="res://Scene/MainMenu/Font/ThaleahFat.ttf" id="1_6vdb2"]
+[ext_resource type="Script" uid="uid://tbgfy7nai6vr" path="res://Sprites/BossHealthBar.gd" id="1_whquq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1akr1"]
 bg_color = Color(0.6, 0.6, 0.6, 0.74509805)

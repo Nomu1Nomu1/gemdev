@@ -8,6 +8,19 @@
 [ext_resource type="Texture2D" uid="uid://cv2snoj4cyyuw" path="res://GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Autumn BG/GandalfHardcore Background layers_layer 2.png" id="4_vhp71"]
 [ext_resource type="Texture2D" uid="uid://dr7mmsthst0gb" path="res://GandalfHardcore FREE Platformer Assets/GandalfHardcore Background layers/Autumn BG/GandalfHardcore Background layers_layer 1.png" id="5_gn08h"]
 [ext_resource type="Texture2D" uid="uid://dngxv0ymndov" path="res://GandalfHardcore FREE Platformer Assets/Floor Tiles1.png" id="8_vn0ru"]
+[ext_resource type="PackedScene" uid="uid://c0dkh7duj3a41" path="res://Scene/Main/pause_menu.tscn" id="9_pausemenu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground"]
+size = Vector2(1300, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform1"]
+size = Vector2(74, 7.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform2"]
+size = Vector2(129, 17)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wall"]
+distance = 35.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p5cu0"]
 texture = ExtResource("8_vn0ru")
@@ -613,6 +626,62 @@ texture = ExtResource("4_vhp71")
 position = Vector2(576, 442.625)
 scale = Vector2(1.1315029, 1.21026)
 texture = ExtResource("5_gn08h")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=651952187]
+position = Vector2(136, 538)
+
+[node name="Environment" type="Node2D" parent="." unique_id=1311020322]
+
+[node name="Floor" type="StaticBody2D" parent="Environment" unique_id=1540576732]
+position = Vector2(588, 614)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Floor" unique_id=1434380209]
+shape = SubResource("RectangleShape2D_ground")
+
+[node name="Platform1" type="StaticBody2D" parent="Environment" unique_id=539147503]
+position = Vector2(563, 464)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Platform1" unique_id=474013494]
+position = Vector2(-252, 60.25)
+shape = SubResource("RectangleShape2D_platform1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Platform1" unique_id=514373452]
+position = Vector2(-252, 60.25)
+shape = SubResource("RectangleShape2D_platform1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment/Platform1" unique_id=448541807]
+position = Vector2(127, 62)
+shape = SubResource("RectangleShape2D_platform1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Environment/Platform1" unique_id=1906025073]
+position = Vector2(287, 62)
+shape = SubResource("RectangleShape2D_platform1")
+
+[node name="Platform2" type="StaticBody2D" parent="Environment" unique_id=9947323]
+position = Vector2(543, 484)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Platform2" unique_id=1946266761]
+position = Vector2(2, 10)
+shape = SubResource("RectangleShape2D_platform2")
+
+[node name="LeftWall" type="StaticBody2D" parent="Environment" unique_id=131166207]
+position = Vector2(-2, 300)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/LeftWall" unique_id=378442001]
+shape = SubResource("WorldBoundaryShape2D_wall")
+
+[node name="RightWall" type="StaticBody2D" parent="Environment" unique_id=1589345849]
+position = Vector2(1190, 300)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/RightWall" unique_id=1212011653]
+shape = SubResource("WorldBoundaryShape2D_wall")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1042812747]
+layer = 10
+
+[node name="PauseMenu" parent="UILayer" unique_id=1431654654 instance=ExtResource("9_pausemenu")]
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1143952986]
 position = Vector2(579.63007, 196.5)

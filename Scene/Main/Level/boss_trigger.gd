@@ -23,6 +23,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _start_boss_intro(player: Node2D) -> void:
 	# 1. Bekukan player
+	if "can_move" in player:
+		player.can_move = false
 	player.set_physics_process(false)
 	if "velocity" in player:
 		player.velocity = Vector2.ZERO
@@ -83,13 +85,15 @@ func _start_boss_intro(player: Node2D) -> void:
 		
 		# Beri waktu kamera meluncur kembali ke MC sebelum kontrol dibuka
 		await get_tree().create_timer(0.8).timeout
-	
+
 	var boss_ui = get_tree().get_first_node_in_group("boss_ui")
 	if boss_ui and boss_instance:
 		boss_ui.activate_boss_bar("EXECUTIONER", boss_instance.max_health)
 		# Sambungkan sinyal bos ke fungsi UI
 		boss_instance.hp_changed.connect(boss_ui.update_hp)
 		boss_instance.boss_died.connect(boss_ui.hide_boss_bar)
-		
+
 	# 5. Lepas kunci player (bisa jalan lagi)
+	if "can_move" in player:
+		player.can_move = true
 	player.set_physics_process(true)

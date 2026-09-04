@@ -12,6 +12,13 @@ const COLOR_ACTIVE_BG = Color("#0D0D11")
 const COLOR_INACTIVE_BORDER = Color("#3A3D45")
 const COLOR_INACTIVE_BG = Color("#121316cc")
 
+# Scene tujuan setelah karakter dipilih, sesuai weapon type-nya
+const LEVEL_SCENES := {
+	GameManager.WeaponType.SWORD: "res://sword_2d.tscn",
+	GameManager.WeaponType.BOW: "res://archer_2d.tscn",
+}
+const MAIN_MENU_PATH: String = "res://Scene/MainMenu/main_menu.tscn"
+
 var is_locked: bool = false
 var current_card: Button = null
 var is_ready: bool = false
@@ -114,14 +121,16 @@ func _on_card_pressed(card: Button, weapon_type: GameManager.WeaponType) -> void
 	
 	await get_tree().create_timer(0.4).timeout
 	
-	if ResourceLoader.exists("res://Scene/Main/Level/level_1.tscn"):
-		SceneTransition.change_scene("res://Scene/Main/Level/level_1.tscn", 0.5)
+	var target_scene: String = LEVEL_SCENES.get(weapon_type, "res://sword_2d.tscn")
+	GameManager.last_played_level = target_scene
+	if ResourceLoader.exists(target_scene):
+		SceneTransition.change_scene(target_scene, 0.5)
 	else:
-		get_tree().change_scene_to_file("res://Scene/Main/Level/level_1.tscn")
+		push_error("Error: Scene %s tidak ditemukan!" % target_scene)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and not is_locked:
 		is_locked = true
 		if click_sfx and click_sfx.stream:
 			click_sfx.play()
-		SceneTransition.change_scene("res://Scene/MainMenu/main_menu.tscn", 0.4)
+		SceneTransition.change_scene(MAIN_MENU_PATH, 0.4)

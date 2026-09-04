@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://b17m0uhaummla"]
 
-[ext_resource type="Script" path="res://GandalfHardcore FREE Platformer Assets/Sprites/player_sword.gd" id="1_1yaa6"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Character skin colors/Male Skin1.png" id="2_itimp"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Clothing/Boots.png" id="3_kb17o"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Clothing/Blue Pants.png" id="4_i17uc"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Clothing/Blue Shirt v2.png" id="5_dmy4q"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Hair/Male Hair1.png" id="6_lpeek"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Hand/shield_wood.png" id="7_xlrvb"]
-[ext_resource type="Texture2D" path="res://GandalfHardcore FREE Platformer Assets/Sprites/Pic/Male Hand/Male Sword.png" id="8_7uffn"]
+[ext_resource type="Script" uid="uid://j8dnyud0q71w" path="res://Sprites/player_sword.gd" id="1_1yaa6"]
+[ext_resource type="Texture2D" uid="uid://xdsfab2flgmp" path="res://Sprites/Pic/Character skin colors/Male Skin1.png" id="2_itimp"]
+[ext_resource type="Texture2D" uid="uid://cyuq2kr5747r3" path="res://Sprites/Pic/Male Clothing/Boots.png" id="3_kb17o"]
+[ext_resource type="Texture2D" uid="uid://ctvpw2ngsdl8t" path="res://Sprites/Pic/Male Clothing/Blue Pants.png" id="4_i17uc"]
+[ext_resource type="Texture2D" uid="uid://bry1vqrbiitc3" path="res://Sprites/Pic/Male Clothing/Blue Shirt v2.png" id="5_dmy4q"]
+[ext_resource type="Texture2D" uid="uid://bn6xs1xanedd0" path="res://Sprites/Pic/Male Hair/Male Hair1.png" id="6_lpeek"]
+[ext_resource type="Texture2D" uid="uid://y4aekv81cwh1" path="res://Sprites/Pic/Male Hand/shield_wood.png" id="7_xlrvb"]
+[ext_resource type="Texture2D" uid="uid://ch7vhfijop6fn" path="res://Sprites/Pic/Male Hand/Male Sword.png" id="8_7uffn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c7af7"]
 
@@ -739,9 +739,6 @@ show_percentage = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=979705398]
 position = Vector2(0, -20)
-limit_left = 0
-limit_top = 0
-limit_bottom = 300
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 drag_top_margin = 0.4

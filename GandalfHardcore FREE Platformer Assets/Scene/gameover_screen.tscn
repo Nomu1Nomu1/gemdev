@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://btbqvrjx4ttd"]
 
 [ext_resource type="Shader" uid="uid://ibow1si42wmh" path="res://BlurShader.gdshader" id="1_g8d0f"]
-[ext_resource type="FontFile" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ApexMk2-BoldExtended.otf" id="2_pegdk"]
-[ext_resource type="Script" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/pause_menu.gd" id="3_4a5l3"]
-[ext_resource type="AudioStream" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/HoverSound.mp3" id="4_6bmd2"]
-[ext_resource type="AudioStream" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/ClickSound.mp3" id="5_mv7ao"]
-[ext_resource type="Shader" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/main_menu.gdshader" id="6_o5uoi"]
-[ext_resource type="FontFile" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ThaleahFat.ttf" id="7_c8nxe"]
-[ext_resource type="Script" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/menu_button.gd" id="8_2haph"]
+[ext_resource type="FontFile" uid="uid://dbaoehkuhp4ky" path="res://Scene/MainMenu/Font/ApexMk2-BoldExtended.otf" id="2_pegdk"]
+[ext_resource type="Script" uid="uid://dpaeubctlxjet" path="res://Scene/Main/pause_menu.gd" id="3_4a5l3"]
+[ext_resource type="AudioStream" uid="uid://bi3a15qgtqyvi" path="res://Scene/MainMenu/Sound/HoverSound.mp3" id="4_6bmd2"]
+[ext_resource type="AudioStream" uid="uid://b87pwxiiioo7n" path="res://Scene/MainMenu/Sound/ClickSound.mp3" id="5_mv7ao"]
+[ext_resource type="Shader" uid="uid://cs4hp5o627f5y" path="res://Scene/MainMenu/main_menu.gdshader" id="6_o5uoi"]
+[ext_resource type="FontFile" uid="uid://blf0ofaqt4216" path="res://Scene/MainMenu/Font/ThaleahFat.ttf" id="7_c8nxe"]
+[ext_resource type="Script" uid="uid://b5xdj0xp82bv6" path="res://Scene/MainMenu/menu_button.gd" id="8_2haph"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_re587"]
 shader = ExtResource("1_g8d0f")
