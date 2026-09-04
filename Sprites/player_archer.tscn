@@ -583,6 +583,54 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds8hu"]
+content_margin_left = 6.0
+content_margin_top = 6.0
+content_margin_right = 6.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05882353, 0.05882353, 0.05882353, 0.7058824)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8re2a"]
+bg_color = Color(0.12941177, 0.09411765, 0.14901961, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.83137256, 0.6862745, 0.21568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pos48"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.101960786, 0.03529412, 0.043137256, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.039215688, 0.015686275, 0.019607844, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbcvd"]
+bg_color = Color(0.7529412, 0.22352941, 0.16862746, 1)
+border_width_top = 1
+border_color = Color(1, 0.4627451, 0.45882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnst2"]
+bg_color = Color(0.047058824, 0.105882354, 0.14901961, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ky4jv"]
+bg_color = Color(0.16078432, 0.5019608, 0.7254902, 1)
+border_width_top = 1
+border_color = Color(0.45490196, 0.7254902, 1, 1)
+
 [node name="Archer" type="CharacterBody2D" unique_id=692584052]
 
 [node name="Visuals" type="Node2D" parent="." unique_id=803356563]
@@ -603,3 +651,63 @@ autoplay = "idle"
 [node name="Hurtbox" type="Node2D" parent="." unique_id=1033851266]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=444658007]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=985921251]
+
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=2136251710]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerStatus" type="MarginContainer" parent="CanvasLayer/HUD" unique_id=171537568]
+layout_mode = 1
+offset_right = 190.0
+offset_bottom = 58.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/HUD/PlayerStatus" unique_id=511574448]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ds8hu")
+
+[node name="StatusRow" type="HBoxContainer" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer" unique_id=755228808]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Avatar" type="Panel" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow" unique_id=379775378]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8re2a")
+
+[node name="BarsContainer" type="VBoxContainer" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow" unique_id=626267404]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer" unique_id=239015212]
+custom_minimum_size = Vector2(130, 12)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_pos48")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xbcvd")
+value = 100.0
+show_percentage = false
+
+[node name="ShieldBar" type="ProgressBar" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer" unique_id=1907294186]
+custom_minimum_size = Vector2(80, 6)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_gnst2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ky4jv")
+value = 100.0
+show_percentage = false
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=242025498]
+position = Vector2(0, -20)
+limit_left = 0
+limit_top = 0
+limit_bottom = 300
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+drag_top_margin = 0.4

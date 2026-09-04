@@ -124,4 +124,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		is_locked = true
 		if click_sfx and click_sfx.stream:
 			click_sfx.play()
-		SceneTransition.change_scene("res://main_menu.tscn", 0.4)
+		SceneTransition.change_scene("res://Scene/MainMenu/main_menu.tscn", 0.4)

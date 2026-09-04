@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bi3a15qgtqyvi" path="res://Scene/MainMenu/Sound/HoverSound.mp3" id="2_h6c7n"]
 [ext_resource type="AudioStream" uid="uid://b87pwxiiioo7n" path="res://Scene/MainMenu/Sound/ClickSound.mp3" id="3_22ng4"]
 [ext_resource type="PackedScene" uid="uid://ctrrik22h2sj8" path="res://Sprites/vanguard.tscn" id="4_aop4h"]
+[ext_resource type="PackedScene" uid="uid://dvww0f21vvxwv" path="res://Sprites/archer.tscn" id="5_pnd0f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aop4h"]
 shader = ExtResource("2_aop4h")
@@ -126,7 +127,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.36078432, 0.43137255, 1)
 theme_override_font_sizes/font_size = 9
-text = "[ GREATSWORD ]"
+text = "[ SWORD & SHIELD ]"
 horizontal_alignment = 1
 
 [node name="SpriteContainer" type="CenterContainer" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=1009406489]
@@ -147,21 +148,21 @@ color = Color(0.47843137, 0.08627451, 0.12941177, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
 theme_override_font_sizes/font_size = 7
-text = "STYLE: MELEE SLASHER"
+text = "SHORT RANGE"
 horizontal_alignment = 1
 
 [node name="StatLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=760241820]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
 theme_override_font_sizes/font_size = 7
-text = "ATK: HIGH  |  DEF: HEAVY"
+text = "ATK: NORMAL  |  DEF: HEAVY"
 horizontal_alignment = 1
 
 [node name="PerkLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=341747142]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.23137255, 0.1882353, 1)
 theme_override_font_sizes/font_size = 7
-text = "CRIT ON 3RD COMBO HIT"
+text = "SKILL: SHIELD"
 horizontal_alignment = 1
 
 [node name="ArcherCard" type="Button" parent="MarginContainer/CenterUI/CardsHBox" unique_id=670836712]
@@ -202,24 +203,24 @@ theme_override_constants/separation = 4
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9411765, 0.9490196, 0.9607843, 1)
 theme_override_font_sizes/font_size = 11
-text = "THE VANGUARD"
+text = "THE ARCHER"
 horizontal_alignment = 1
 
 [node name="WeaponSub" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=364620822]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.36078432, 0.43137255, 1)
 theme_override_font_sizes/font_size = 9
-text = "[ GREATSWORD ]"
+text = "[ BOW ]"
 horizontal_alignment = 1
 
 [node name="SpriteContainer" type="CenterContainer" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=226591792]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="player_sword" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer/SpriteContainer" unique_id=1629059543 instance=ExtResource("4_aop4h")]
+[node name="Archer" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer/SpriteContainer" unique_id=270914669 instance=ExtResource("5_pnd0f")]
 texture_filter = 1
-position = Vector2(75, 25)
-scale = Vector2(1.5, 1.5)
+position = Vector2(73, 39)
+scale = Vector2(1.7, 1.7)
 
 [node name="Divider" type="ColorRect" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=842065090]
 custom_minimum_size = Vector2(0, 2)
@@ -230,21 +231,21 @@ color = Color(0.47843137, 0.08627451, 0.12941177, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
 theme_override_font_sizes/font_size = 7
-text = "STYLE: MELEE SLASHER"
+text = "LONG RANGE"
 horizontal_alignment = 1
 
 [node name="StatLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=1929218626]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
 theme_override_font_sizes/font_size = 7
-text = "ATK: HIGH  |  DEF: HEAVY"
+text = "ATK: HIGH  |  DEF: LOW"
 horizontal_alignment = 1
 
 [node name="PerkLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=2027413682]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.23137255, 0.1882353, 1)
 theme_override_font_sizes/font_size = 7
-text = "CRIT ON 3RD COMBO HIT"
+text = "SKILL: DODGE"
 horizontal_alignment = 1
 
 [node name="SpacerBot" type="Control" parent="MarginContainer/CenterUI" unique_id=1762677855]
