@@ -1,4 +1,8 @@
-extends Node2D
+import os
+
+path = r"D:\Yodha\Lomba\Alif peler\gemdev\Scene\Main\Level\level_1.gd"
+
+clean_content = """extends Node2D
 
 @onready var spawn_point: Marker2D = $SpawnPoint
 
@@ -50,3 +54,7 @@ func cinematic_focus_to(target_pos: Vector2, zoom_target: Vector2 = Vector2(1.5,
 	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(camera, "offset", target_offset, duration)
 	tween.tween_property(camera, "zoom", zoom_target, duration)
+"""
+with open(path, 'w', encoding='utf-8') as f:
+    f.write(clean_content)
+print("level_1.gd resolved!")

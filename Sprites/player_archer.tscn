@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://kljlgo617mtw"]
-
+[ext_resource type="Script" path="res://Sprites/player_archer.gd" id="99_script"]
 [ext_resource type="Texture2D" uid="uid://bqqprddf5sbd4" path="res://Sprites/Pic/Archer/High Attack.png" id="1_ds8hu"]
 [ext_resource type="Texture2D" uid="uid://bttvsnousrd3k" path="res://Sprites/Pic/Archer/Low attack.png" id="2_8re2a"]
 [ext_resource type="Texture2D" uid="uid://4ugxqjgdgg6g" path="res://Sprites/Pic/Archer/Normal Attack.png" id="3_pos48"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://bu8w1kcvlal5s" path="res://Sprites/Pic/Archer/Dash.png" id="5_gnst2"]
 [ext_resource type="Texture2D" uid="uid://j0qe34vpxq8l" path="res://Sprites/Pic/Archer/Idle and running.png" id="6_ky4jv"]
 [ext_resource type="Texture2D" uid="uid://b8oi6pww8eiab" path="res://Sprites/Pic/Archer/Jumping.png" id="7_ukavj"]
+[ext_resource type="PackedScene" uid="uid://arrow123456789" path="res://Sprites/arrow.tscn" id="100_arrow"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_archer"]
+radius = 9.0
+height = 28.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_htdog"]
 atlas = ExtResource("1_ds8hu")
@@ -583,7 +588,8 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds8hu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eewqp"]
 content_margin_left = 6.0
 content_margin_top = 6.0
 content_margin_right = 6.0
@@ -594,7 +600,8 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8re2a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aw6es"]
 bg_color = Color(0.12941177, 0.09411765, 0.14901961, 1)
 border_width_left = 2
 border_width_top = 2
@@ -602,7 +609,8 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.83137256, 0.6862745, 0.21568628, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pos48"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7af7"]
 content_margin_left = 1.0
 content_margin_top = 1.0
 content_margin_right = 1.0
@@ -614,24 +622,30 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.039215688, 0.015686275, 0.019607844, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbcvd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1akr1"]
 bg_color = Color(0.7529412, 0.22352941, 0.16862746, 1)
 border_width_top = 1
 border_color = Color(1, 0.4627451, 0.45882353, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnst2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n43y7"]
 bg_color = Color(0.047058824, 0.105882354, 0.14901961, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ky4jv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc0li"]
 bg_color = Color(0.16078432, 0.5019608, 0.7254902, 1)
 border_width_top = 1
 border_color = Color(0.45490196, 0.7254902, 1, 1)
 
-[node name="Archer" type="CharacterBody2D" unique_id=692584052]
+
+[node name="Archer" type="CharacterBody2D" unique_id=692584052 groups=["player"]]
+script = ExtResource("99_script")
+arrow_scene = ExtResource("100_arrow")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=803356563]
 
@@ -645,16 +659,22 @@ autoplay = "idle"
 [node name="Bow" type="Sprite2D" parent="Visuals/BowPivot" unique_id=990074363]
 
 [node name="ArrowSpawnPoint" type="Marker2D" parent="Visuals/BowPivot" unique_id=1069121355]
+position = Vector2(22, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1160370710]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_archer")
 
-[node name="Hurtbox" type="Node2D" parent="." unique_id=1033851266]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1033851266]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=444658007]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_archer")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=985921251]
 
-[node name="HUD" type="Control" parent="CanvasLayer" unique_id=2136251710]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1732348023]
+
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=1990308306]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -662,48 +682,48 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PlayerStatus" type="MarginContainer" parent="CanvasLayer/HUD" unique_id=171537568]
+[node name="PlayerStatus" type="MarginContainer" parent="CanvasLayer/HUD" unique_id=847620466]
 layout_mode = 1
 offset_right = 190.0
 offset_bottom = 58.0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/HUD/PlayerStatus" unique_id=511574448]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/HUD/PlayerStatus" unique_id=628036816]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ds8hu")
+theme_override_styles/panel = SubResource("StyleBoxFlat_eewqp")
 
-[node name="StatusRow" type="HBoxContainer" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer" unique_id=755228808]
+[node name="StatusRow" type="HBoxContainer" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer" unique_id=1281337965]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Avatar" type="Panel" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow" unique_id=379775378]
+[node name="Avatar" type="Panel" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow" unique_id=1669440193]
 custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_8re2a")
+theme_override_styles/panel = SubResource("StyleBoxFlat_aw6es")
 
-[node name="BarsContainer" type="VBoxContainer" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow" unique_id=626267404]
+[node name="BarsContainer" type="VBoxContainer" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow" unique_id=1027802344]
 layout_mode = 2
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer" unique_id=239015212]
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer" unique_id=1451611078]
 custom_minimum_size = Vector2(130, 12)
 layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_pos48")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xbcvd")
+theme_override_styles/background = SubResource("StyleBoxFlat_c7af7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1akr1")
 value = 100.0
 show_percentage = false
 
-[node name="ShieldBar" type="ProgressBar" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer" unique_id=1907294186]
+[node name="ShieldBar" type="ProgressBar" parent="CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer" unique_id=665424063]
 custom_minimum_size = Vector2(80, 6)
 layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_gnst2")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ky4jv")
+theme_override_styles/background = SubResource("StyleBoxFlat_n43y7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fc0li")
 value = 100.0
 show_percentage = false
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=242025498]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=979705398]
 position = Vector2(0, -20)
 limit_left = 0
 limit_top = 0
