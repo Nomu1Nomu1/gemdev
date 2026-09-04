@@ -676,7 +676,7 @@ shape = SubResource("CircleShape2D_c7af7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=855153775]
 position = Vector2(-0.635, 9.815)
-scale = Vector2(0.855, 2.235)
+scale = Vector2(0.855, 2.275)
 shape = SubResource("RectangleShape2D_1e63u")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=595247584]
@@ -733,3 +733,12 @@ theme_override_styles/background = SubResource("StyleBoxFlat_n43y7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fc0li")
 value = 100.0
 show_percentage = false
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=979705398]
+position = Vector2(0, -20)
+limit_left = 0
+limit_top = 0
+limit_bottom = 300
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+drag_top_margin = 0.4

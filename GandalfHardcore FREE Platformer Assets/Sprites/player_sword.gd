@@ -27,11 +27,9 @@ var is_shield_broken: bool = false
 @onready var attack_area: Area2D = $Visuals/AttackArea
 @onready var attack_shape: CollisionShape2D = $Visuals/AttackArea/CollisionShape2D
 
-# --- Referensi Node UI ---
 @onready var health_bar: ProgressBar = $CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer/HealthBar
 @onready var shield_bar: ProgressBar = $CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer/ShieldBar
 
-# --- Variabel State ---
 var is_attacking: bool = false
 var is_blocking: bool = false
 var default_shield_pos: Vector2
