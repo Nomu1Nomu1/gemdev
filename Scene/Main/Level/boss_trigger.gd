@@ -35,6 +35,8 @@ func _start_boss_intro(player: Node2D) -> void:
 	# 2. Spawn Bos
 	if boss_scene == null:
 		push_error("Slot Boss Scene KOSONG di Inspector!")
+		if "can_move" in player:
+			player.can_move = true
 		player.set_physics_process(true)
 		return
 
@@ -46,19 +48,27 @@ func _start_boss_intro(player: Node2D) -> void:
 
 	get_parent().add_child(boss_instance)
 
+	# Tunggu 1 frame agar semua sub-node bos terdaftar di tree
+	await get_tree().process_frame
+
+	# Berikan referensi player & bangunkan AI bos
+	boss_instance.player = player
+	if boss_instance.has_method("wakeup_boss"):
+		boss_instance.wakeup_boss()
+
 	# 3. Pindah ke Kamera Bos
 	var boss_cam: Camera2D = boss_instance.get_node_or_null("BossCamera")
 
-	if boss_cam:
-		# Aktifkan pergerakan halus bawaan Godot
+	if boss_cam and boss_cam.is_inside_tree():
+		boss_cam.enabled = true
 		boss_cam.position_smoothing_enabled = true
-		boss_cam.position_smoothing_speed = 4.0 # Angka makin kecil makin lambat & sinematik
+		boss_cam.position_smoothing_speed = 4.0
 		boss_cam.make_current()
 
-		# Beri waktu kamera meluncur ke arah bos
+		# Beri jeda kamera meluncur
 		await get_tree().create_timer(0.8).timeout
 
-		# Efek Shake menggunakan Tween bawaanmu yang sudah aman
+		# Efek Shake
 		var shake_tween = create_tween()
 		for i in range(10):
 			var offset_val = Vector2(randf_range(-7.0, 7.0), randf_range(-7.0, 7.0))
@@ -66,22 +76,30 @@ func _start_boss_intro(player: Node2D) -> void:
 		shake_tween.tween_property(boss_cam, "offset", Vector2.ZERO, 0.04)
 		await shake_tween.finished
 	else:
-		print("DEBUG: BossCamera tidak terbaca!")
+		push_warning("BossCamera belum siap di dalam tree atau tidak ditemukan!")
 
-	# Jeda waktu bos memainkan animasi wakeup
+	# Jeda sejenak selama bos animasi bangun
 	await get_tree().create_timer(1.2).timeout
 
-	# 4. Kembalikan ke Kamera Player secara halus
-	if player_cam:
+	# 4. Kembalikan Kamera ke Player
+	if player_cam and player_cam.is_inside_tree():
 		player_cam.position_smoothing_enabled = true
 		player_cam.position_smoothing_speed = 4.0
 		player_cam.make_current()
 		
-		# Beri waktu kamera meluncur kembali ke MC sebelum kontrol dibuka
+		# Waktu kamera meluncur balik ke player
 		await get_tree().create_timer(0.8).timeout
 
-	# 5. Lepas kunci player (bisa jalan lagi)
+	# 5. Hubungkan UI Bar Bos
+	var boss_ui = get_tree().get_first_node_in_group("boss_ui")
+	if boss_ui and boss_instance:
+		boss_ui.activate_boss_bar("EXECUTIONER", boss_instance.max_health)
+		if boss_instance.has_signal("hp_changed"):
+			boss_instance.hp_changed.connect(boss_ui.update_hp)
+		if boss_instance.has_signal("boss_died"):
+			boss_instance.boss_died.connect(boss_ui.hide_boss_bar)
+
+	# 6. Buka kembali kontrol Player
 	if "can_move" in player:
 		player.can_move = true
 	player.set_physics_process(true)
-
