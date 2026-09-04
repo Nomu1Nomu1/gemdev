@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bi3a15qgtqyvi"
+path="res://.godot/imported/HoverSound.mp3-52b9ef18877a55756e14e23a9c36b259.mp3str"
+
+[deps]
+
+source_file="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/HoverSound.mp3"
+dest_files=["res://.godot/imported/HoverSound.mp3-52b9ef18877a55756e14e23a9c36b259.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

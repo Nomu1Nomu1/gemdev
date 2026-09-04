@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djmcadod1mcsx"
+path="res://.godot/imported/BGM.mp3-bd0a3d55020d12282f6d2e375fb5ca9d.mp3str"
+
+[deps]
+
+source_file="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/BGM.mp3"
+dest_files=["res://.godot/imported/BGM.mp3-bd0a3d55020d12282f6d2e375fb5ca9d.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=70.0
+bpm=0.0
+beat_count=0
+bar_beats=4
