@@ -198,4 +198,4 @@ func _die() -> void:
 	
 	await get_tree().create_timer(1.0).timeout
 	if SceneTransition and SceneTransition.has_method("change_scene"):
-		SceneTransition.change_scene("res://GandalfHardcore FREE Platformer Assets/Scene/gameover_screen.tscn", 0.4)
+		SceneTransition.change_scene("res://Scene/gameover_screen.tscn", 0.4)
