@@ -14,6 +14,8 @@ var is_busy: bool = false
 var current_damage_output: int = 0
 var player_in_attack_range: bool = false
 var player: CharacterBody2D = null
+var is_phase2: bool = false
+
 
 # Arah hadap terakhir (1 = kanan, -1 = kiri)
 var facing_dir: float = 1.0
@@ -113,13 +115,15 @@ func _chase_player(dir_x: float) -> void:
 
 func _perform_attack() -> void:
 	is_busy = true
-	velocity.x = 0
+	# Lunge forward slightly during attack
+	velocity.x = facing_dir * (30.0 if not is_phase2 else 80.0)
 	current_state = State.ATTACK
 	current_damage_output = attack_damage
 	sprite.play("attack")
 	
 	# Waktu ayunan serangan
 	await get_tree().create_timer(0.25).timeout
+	velocity.x = 0
 	if not is_dead and current_state == State.ATTACK:
 		hitbox_shape.disabled = false
 		
@@ -127,8 +131,15 @@ func _perform_attack() -> void:
 	hitbox_shape.disabled = true
 
 	# Jeda sebelum bos bisa bergerak lagi
-	await get_tree().create_timer(0.3).timeout
+	var recovery = 0.4 if not is_phase2 else 0.15
+	await get_tree().create_timer(recovery).timeout
+	
 	if current_state == State.ATTACK and not is_dead:
+		# Kemungkinan chain attack jika Phase 2
+		if is_phase2 and player_in_attack_range and randf() > 0.4:
+			_perform_attack()
+			return
+		
 		is_busy = false
 		current_state = State.CHASE
 
@@ -142,6 +153,15 @@ func _use_skill(dir_x: float) -> void:
 	# Dash menerjang
 	velocity.x = dir_x * skill_dash_speed
 	hitbox_shape.disabled = false
+	
+	# Screen shake ringan
+	if get_tree().get_first_node_in_group("player"):
+		var cam = get_tree().get_first_node_in_group("player").get_node_or_null("Camera2D")
+		if cam:
+			var shake = create_tween()
+			for i in range(4):
+				shake.tween_property(cam, "offset", Vector2(randf_range(-5, 5), randf_range(-5, 5)), 0.05)
+			shake.tween_property(cam, "offset", Vector2.ZERO, 0.05)
 	
 	await get_tree().create_timer(0.4).timeout
 	velocity.x = 0
@@ -187,3 +207,29 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	# Berikan damage ke player jika memiliki fungsi take_damage
 	if body.has_method("take_damage"):
 		body.take_damage(current_damage_output, self)
+
+
+func take_damage(amount: int, attacker: Node2D = null) -> void:
+	super.take_damage(amount, attacker)
+	
+	if not is_dead and not is_phase2 and current_health <= max_health * 0.5:
+		_enter_phase_2()
+
+func _enter_phase_2() -> void:
+	is_phase2 = true
+	speed = 150.0
+	skill_dash_speed = 350.0
+	skill_cooldown = 3.0
+	attack_damage += 15
+	
+	# Efek marah
+	var tw = create_tween().set_loops(4)
+	tw.tween_property(self, "modulate", Color(2.5, 0.5, 0.5), 0.1)
+	tw.tween_property(self, "modulate", Color.WHITE, 0.1)
+	
+	is_busy = true
+	velocity.x = 0
+	sprite.play("idle")
+	await get_tree().create_timer(0.8).timeout
+	if not is_dead:
+		is_busy = false

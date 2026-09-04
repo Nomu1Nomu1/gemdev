@@ -9,7 +9,7 @@ func _ready() -> void:
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
-	if not (body.is_in_group("player") or body.name == "player_sword"):
+	if not (body.is_in_group("player") or body.name == "player_sword" or body.name == "Archer" or body.name == "player_archer"):
 		return
 
 	if has_triggered:
@@ -94,7 +94,8 @@ func _start_boss_intro(player: Node2D) -> void:
 	var boss_ui = get_tree().get_first_node_in_group("boss_ui")
 	print("DEBUG: Status boss_ui -> ", boss_ui) # <-- Tambahkan print ini
 	if boss_ui and boss_instance:
-		boss_ui.activate_boss_bar("EXECUTIONER", boss_instance.max_health)
+		var b_name = boss_instance.boss_name if "boss_name" in boss_instance else "BOSS"
+		boss_ui.activate_boss_bar(b_name, boss_instance.max_health)
 		if boss_instance.has_signal("hp_changed"):
 			boss_instance.hp_changed.connect(boss_ui.update_hp)
 		if boss_instance.has_signal("boss_died"):
