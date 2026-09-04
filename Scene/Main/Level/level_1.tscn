@@ -129,5 +129,6 @@ shape = SubResource("RectangleShape2D_1akr1")
 
 [node name="BossSpawnPoint" type="Marker2D" parent="." unique_id=508905364]
 position = Vector2(1200, 270)
+position = Vector2(1254, 275)
 
 [connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]
