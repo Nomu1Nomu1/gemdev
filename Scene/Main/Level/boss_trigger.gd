@@ -100,15 +100,6 @@ func _start_boss_intro(player: Node2D) -> void:
 			boss_instance.boss_died.connect(boss_ui.hide_boss_bar)
 
 	# 6. Buka kembali kontrol Player
-=======
-	var boss_ui = get_tree().get_first_node_in_group("boss_ui")
-	if boss_ui and boss_instance:
-		boss_ui.activate_boss_bar("EXECUTIONER", boss_instance.max_health)
-		# Sambungkan sinyal bos ke fungsi UI
-		boss_instance.hp_changed.connect(boss_ui.update_hp)
-		boss_instance.boss_died.connect(boss_ui.hide_boss_bar)
-
-	# 5. Lepas kunci player (bisa jalan lagi)
 	if "can_move" in player:
 		player.can_move = true
 	player.set_physics_process(true)
