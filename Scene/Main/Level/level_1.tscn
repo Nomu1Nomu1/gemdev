@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://c2vjdxrrmkxsm" path="res://Scene/MainMenu/Background/props-sliced/well.png" id="9_p1j7f"]
 [ext_resource type="Script" uid="uid://b3oiupewjcknh" path="res://Scene/Main/Level/boss_trigger.gd" id="11_wttoi"]
 [ext_resource type="PackedScene" uid="uid://1j7denxhxrkp" path="res://Sprites/mes_boss.tscn" id="12_fvu0s"]
-[ext_resource type="PackedScene" uid="uid://c28kds266kjr8" path="res://Sprites/boss_health_bar.tscn" id="13_gks5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7af7"]
 size = Vector2(3000, 40)
@@ -130,7 +129,5 @@ shape = SubResource("RectangleShape2D_1akr1")
 
 [node name="BossSpawnPoint" type="Marker2D" parent="." unique_id=508905364]
 position = Vector2(1254, 275)
-
-[node name="BossHealthBar" parent="." unique_id=666142095 instance=ExtResource("13_gks5l")]
 
 [connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://chlbbiorr6dk8"]
+[gd_scene format=3 uid="uid://1j7denxhxrkp"]
 
 [ext_resource type="Script" uid="uid://bov7r0lu675ub" path="res://Sprites/mes_boss.gd" id="1_5qj0g"]
 [ext_resource type="Texture2D" uid="uid://ckb0va5epbxao" path="res://Sprites/Enemies/BossMess/attack2/frames_normal/atk1.png" id="2_v30et"]
