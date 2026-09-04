@@ -48,7 +48,10 @@ func _find_player() -> void:
 		if players.size() > 0:
 			target_player = players[0] as CharacterBody2D
 		else:
+			# Fallback: search by name for either Sword or Archer
 			target_player = get_tree().root.find_child("player_sword", true, false) as CharacterBody2D
+			if target_player == null:
+				target_player = get_tree().root.find_child("Archer", true, false) as CharacterBody2D
 
 func _update_health_bar() -> void:
 	if health_bar:

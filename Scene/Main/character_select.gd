@@ -12,13 +12,6 @@ const COLOR_ACTIVE_BG = Color("#0D0D11")
 const COLOR_INACTIVE_BORDER = Color("#3A3D45")
 const COLOR_INACTIVE_BG = Color("#121316cc")
 
-# Scene tujuan setelah karakter dipilih, sesuai weapon type-nya
-const LEVEL_SCENES := {
-	GameManager.WeaponType.SWORD: "res://sword_2d.tscn",
-	GameManager.WeaponType.BOW: "res://archer_2d.tscn",
-}
-const MAIN_MENU_PATH: String = "res://Scene/MainMenu/main_menu.tscn"
-
 var is_locked: bool = false
 var current_card: Button = null
 var is_ready: bool = false
@@ -29,6 +22,17 @@ func _ready() -> void:
 	
 	_setup_card(vanguard_card, GameManager.WeaponType.SWORD)
 	_setup_card(archer_card, GameManager.WeaponType.BOW)
+	
+	# --- FIX ARCHER UI ---
+	var archer_vbox = archer_card.find_child("VBoxContainer", true, false)
+	if archer_vbox:
+		if archer_vbox.has_node("ClassName"): archer_vbox.get_node("ClassName").text = "THE ARCHER"
+		if archer_vbox.has_node("WeaponSub"): archer_vbox.get_node("WeaponSub").text = "[ LONGBOW ]"
+		if archer_vbox.has_node("StyleLabel"): archer_vbox.get_node("StyleLabel").text = "STYLE: RANGED DPS"
+		if archer_vbox.has_node("StatLabel"): archer_vbox.get_node("StatLabel").text = "ATK: MEDIUM  |  DEF: LIGHT"
+		if archer_vbox.has_node("PerkLabel"): archer_vbox.get_node("PerkLabel").text = "DODGE GRANTS I-FRAMES"
+		
+		# Replace sprite logic removed, using actual archer.tscn instead
 	
 	await get_tree().process_frame
 	vanguard_card.grab_focus()
@@ -121,16 +125,14 @@ func _on_card_pressed(card: Button, weapon_type: GameManager.WeaponType) -> void
 	
 	await get_tree().create_timer(0.4).timeout
 	
-	var target_scene: String = LEVEL_SCENES.get(weapon_type, "res://sword_2d.tscn")
-	GameManager.last_played_level = target_scene
-	if ResourceLoader.exists(target_scene):
-		SceneTransition.change_scene(target_scene, 0.5)
+	if ResourceLoader.exists("res://Scene/Main/Level/level_1.tscn"):
+		SceneTransition.change_scene("res://Scene/Main/Level/level_1.tscn", 0.5)
 	else:
-		push_error("Error: Scene %s tidak ditemukan!" % target_scene)
+		get_tree().change_scene_to_file("res://Scene/Main/Level/level_1.tscn")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and not is_locked:
 		is_locked = true
 		if click_sfx and click_sfx.stream:
 			click_sfx.play()
-		SceneTransition.change_scene(MAIN_MENU_PATH, 0.4)
+		SceneTransition.change_scene("res://main_menu.tscn", 0.4)

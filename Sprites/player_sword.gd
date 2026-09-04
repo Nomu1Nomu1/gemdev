@@ -217,6 +217,7 @@ func take_damage(amount: int, attacker: Node2D = null) -> void:
 			blocked_successfully = true
 
 	if blocked_successfully:
+		# Shield absorbs ALL damage — drain stamina instead
 		current_shield_stamina -= amount * 1.5
 		regen_delay_timer = regen_delay_duration
 		
@@ -225,14 +226,32 @@ func take_damage(amount: int, attacker: Node2D = null) -> void:
 			is_shield_broken = true
 			is_blocking = false
 		
-		var reduced_damage: int = int(amount * 0.2)
-		current_health -= reduced_damage
-	else:
-		current_health -= amount
+		# Shield flash feedback (no health loss!)
+		if shield_bar:
+			shield_bar.value = current_shield_stamina
+		var shield_flash = create_tween()
+		shield_flash.tween_property(shield, "modulate", Color(3.0, 3.0, 3.0), 0.05)
+		shield_flash.tween_property(shield, "modulate", Color(1.2, 1.2, 1.2), 0.1)
+		return  # <-- Fully immune, no HP lost!
 
+	# --- UNBLOCKED HIT ---
+	current_health -= amount
 	current_health = max(current_health, 0)
 	if health_bar:
 		health_bar.value = current_health
+
+	# --- EFEK KEDIP MERAH SAAT TERKENA SERANGAN ---
+	var flash_tw = create_tween()
+	flash_tw.tween_property(self, "modulate", Color(2.0, 0.3, 0.3), 0.06)
+	flash_tw.tween_property(self, "modulate", Color.WHITE, 0.06)
+	flash_tw.tween_property(self, "modulate", Color(2.0, 0.3, 0.3), 0.06)
+	flash_tw.tween_property(self, "modulate", Color.WHITE, 0.06)
+	
+	# --- KNOCKBACK ---
+	if attacker:
+		var knockback_dir = sign(global_position.x - attacker.global_position.x)
+		velocity.x = knockback_dir * 120.0
+		velocity.y = -60.0
 
 	if current_health <= 0:
 		_die()

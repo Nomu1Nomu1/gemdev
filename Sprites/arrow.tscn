@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cb2gouf4wep77"]
+
+[ext_resource type="Script" path="res://Sprites/arrow.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arrow"]
+size = Vector2(16, 4)
+
+[node name="Arrow" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_script")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -8.0
+offset_top = -2.0
+offset_right = 8.0
+offset_bottom = 2.0
+color = Color(0.8, 0.8, 0.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_arrow")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
