@@ -250,7 +250,14 @@ func _die() -> void:
 	if attack_shape:
 		attack_shape.set_deferred("disabled", true)
 
-	# Mainkan animasi mati jika tersedia, atau efek fallback
+	# --- EFEK KAMERA DEKATI PEMAIN ---
+	var camera: Camera2D = get_viewport().get_camera_2d()
+	if camera:
+		var cam_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		cam_tween.tween_property(camera, "zoom", Vector2(1.6, 1.6), 0.6)
+		cam_tween.tween_property(camera, "offset", Vector2(0, -10), 0.6)
+
+	# Mainkan animasi mati / efek modulasi
 	if anim.has_animation("Death") or anim.has_animation("death"):
 		var death_anim = "Death" if anim.has_animation("Death") else "death"
 		anim.play(death_anim)
@@ -268,4 +275,3 @@ func _die() -> void:
 		get_node("/root/SceneTransition").change_scene("res://Scene/gameover_screen.tscn", 0.4)
 	elif get_tree():
 		get_tree().change_scene_to_file("res://Scene/gameover_screen.tscn")
-

@@ -583,7 +583,7 @@ animations = [{
 "speed": 9.0
 }]
 
-[node name="Archer" type="CharacterBody2D" unique_id=692584052]
+[node name="Archer" type="Node2D" unique_id=270914669]
 
 [node name="Visuals" type="Node2D" parent="." unique_id=803356563]
 
@@ -597,9 +597,3 @@ autoplay = "idle"
 [node name="Bow" type="Sprite2D" parent="Visuals/BowPivot" unique_id=990074363]
 
 [node name="ArrowSpawnPoint" type="Marker2D" parent="Visuals/BowPivot" unique_id=1069121355]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1160370710]
-
-[node name="Hurtbox" type="Node2D" parent="." unique_id=1033851266]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=444658007]

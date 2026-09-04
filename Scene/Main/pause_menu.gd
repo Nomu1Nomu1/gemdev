@@ -80,4 +80,3 @@ func _to_main_menu() -> void:
 
 func _quit_game() -> void:
 	get_tree().quit()
-
