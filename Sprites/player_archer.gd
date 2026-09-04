@@ -164,15 +164,36 @@ func _on_animation_finished() -> void:
 	if anim_name == "attack_normal" or anim_name == "attack_high" or anim_name == "attack_low":
 		is_shooting = false
 
+var is_invincible: bool = false
+
 func take_damage(amount: int, attacker: Node2D = null) -> void:
 	if is_dead: return
 	if is_dodging: return
+	if is_invincible: return
 		
 	current_health -= amount
 	current_health = max(current_health, 0)
 	
 	if health_bar:
 		health_bar.value = current_health
+	
+	# --- EFEK KEDIP MERAH SAAT TERKENA SERANGAN ---
+	var flash_tw = create_tween()
+	flash_tw.tween_property(self, "modulate", Color(2.0, 0.3, 0.3), 0.06)
+	flash_tw.tween_property(self, "modulate", Color.WHITE, 0.06)
+	flash_tw.tween_property(self, "modulate", Color(2.0, 0.3, 0.3), 0.06)
+	flash_tw.tween_property(self, "modulate", Color.WHITE, 0.06)
+	
+	# --- KNOCKBACK ---
+	if attacker:
+		var knockback_dir = sign(global_position.x - attacker.global_position.x)
+		velocity.x = knockback_dir * 150.0
+		velocity.y = -80.0
+	
+	# --- I-FRAMES SINGKAT ---
+	is_invincible = true
+	await get_tree().create_timer(0.5).timeout
+	is_invincible = false
 
 	if current_health <= 0:
 		_die()

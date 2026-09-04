@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://dt6ckpdgrnvs3"]
+
+[ext_resource type="Script" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/v_button_container.gd" id="3_0k4wn"]
+[ext_resource type="Shader" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/main_menu.gdshader" id="7_cm266"]
+[ext_resource type="Script" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/menu_button.gd" id="9_8u0te"]
+
+[sub_resource type="Gradient" id="Gradient_osxpc"]
+colors = PackedColorArray(0, 0, 0, 0.8627451, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1akr1"]
+gradient = SubResource("Gradient_osxpc")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_teh6h"]
+shader = ExtResource("7_cm266")
+shader_parameter/bg_color = Color(0.2901961, 0.039215688, 0.078431375, 1)
+shader_parameter/border_color = Color(1, 0.16470589, 0.29411766, 1)
+shader_parameter/corner_cut = 3.0
+shader_parameter/border_size = 1.0
+shader_parameter/fade_end = 0.65
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_osxpc"]
+content_margin_right = 2.0
+
+[node name="Main_Menu" type="Control" unique_id=397588192]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=680093937]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="RightShadowOverlay" type="TextureRect" parent="Background" unique_id=752390601]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1akr1")
+
+[node name="MenuEmbers" type="CPUParticles2D" parent="." unique_id=659307954]
+position = Vector2(320, 180)
+amount = 35
+lifetime = 4.0
+preprocess = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(320, 10)
+direction = Vector2(-0.3, -1)
+spread = 30.0
+gravity = Vector2(-5, -10)
+initial_velocity_min = 20.0
+initial_velocity_max = 45.0
+scale_amount_max = 2.0
+color = Color(1, 0.33333334, 0.2, 0.8)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=380388474]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=234069403]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="S" type="Control" parent="MarginContainer/VBoxContainer" unique_id=545018236]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1246371107]
+light_mask = 2
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 0.16470589, 0.29411766, 1)
+theme_override_colors/font_outline_color = Color(0.23921569, 0.02745098, 0.0627451, 1)
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 30
+theme_override_font_sizes/font_size = 32
+text = "domau"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1894395848]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1372968832]
+custom_minimum_size = Vector2(75, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+script = ExtResource("3_0k4wn")
+
+[node name="HoverS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=544641748]
+
+[node name="ClickS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=529325602]
+
+[node name="BgmS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=382781131]
+
+[node name="Bar" type="ColorRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1255465859]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_teh6h")
+layout_mode = 2
+color = Color(0, 0.9411765, 1, 1)
+
+[node name="PlayB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1254868230]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_osxpc")
+text = "Play"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("9_8u0te")
+
+[node name="OptionsB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=893589744]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_osxpc")
+text = "Options"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("9_8u0te")
+
+[node name="ExitB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=388409595]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_osxpc")
+text = "Exit"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("9_8u0te")
+
+[node name="S" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1914678529]
+layout_mode = 2

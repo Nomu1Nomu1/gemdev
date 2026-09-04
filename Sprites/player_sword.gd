@@ -234,6 +234,20 @@ func take_damage(amount: int, attacker: Node2D = null) -> void:
 	if health_bar:
 		health_bar.value = current_health
 
+	# --- EFEK KEDIP MERAH SAAT TERKENA SERANGAN ---
+	if not blocked_successfully:
+		var flash_tw = create_tween()
+		flash_tw.tween_property(self, "modulate", Color(2.0, 0.3, 0.3), 0.06)
+		flash_tw.tween_property(self, "modulate", Color.WHITE, 0.06)
+		flash_tw.tween_property(self, "modulate", Color(2.0, 0.3, 0.3), 0.06)
+		flash_tw.tween_property(self, "modulate", Color.WHITE, 0.06)
+		
+		# --- KNOCKBACK ---
+		if attacker:
+			var knockback_dir = sign(global_position.x - attacker.global_position.x)
+			velocity.x = knockback_dir * 120.0
+			velocity.y = -60.0
+
 	if current_health <= 0:
 		_die()
 

@@ -644,6 +644,7 @@ border_color = Color(0.45490196, 0.7254902, 1, 1)
 
 
 [node name="Archer" type="CharacterBody2D" unique_id=692584052 groups=["player"]]
+collision_layer = 4
 script = ExtResource("99_script")
 arrow_scene = ExtResource("100_arrow")
 
