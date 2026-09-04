@@ -1,0 +1,265 @@
+[gd_scene format=3 uid="uid://b7xks8l2tgy58"]
+
+[ext_resource type="Script" uid="uid://doguf5beqk3vo" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/character_select.gd" id="1_22ng4"]
+[ext_resource type="Shader" uid="uid://bfdgxlgs5d8pu" path="res://GandalfHardcore FREE Platformer Assets/Scene/Shaders/loadout_card.gdshader" id="2_aop4h"]
+[ext_resource type="FontFile" uid="uid://blf0ofaqt4216" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ThaleahFat.ttf" id="2_dp5i0"]
+[ext_resource type="AudioStream" uid="uid://bi3a15qgtqyvi" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/HoverSound.mp3" id="2_h6c7n"]
+[ext_resource type="AudioStream" uid="uid://b87pwxiiioo7n" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/ClickSound.mp3" id="3_22ng4"]
+[ext_resource type="PackedScene" uid="uid://ctrrik22h2sj8" path="res://GandalfHardcore FREE Platformer Assets/Sprites/vanguard.tscn" id="4_aop4h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aop4h"]
+shader = ExtResource("2_aop4h")
+shader_parameter/bg_color = Color(0.04, 0.06, 0.09, 0.95)
+shader_parameter/border_color = Color(1, 0.16862746, 0.2627451, 1)
+shader_parameter/corner_cut = 10.0
+shader_parameter/border_size = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp5i0"]
+shader = ExtResource("2_aop4h")
+shader_parameter/bg_color = Color(0.04, 0.06, 0.09, 0.95)
+shader_parameter/border_color = Color(1, 0.16862746, 0.2627451, 1)
+shader_parameter/corner_cut = 10.0
+shader_parameter/border_size = 2.0
+
+[node name="CharacterSelect" type="Control" unique_id=1104137195]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_22ng4")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1344956607]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03137255, 0.039215688, 0.05490196, 1)
+
+[node name="DustP" type="CPUParticles2D" parent="." unique_id=890918875]
+position = Vector2(320, 180)
+amount = 35
+lifetime = 3.0
+emission_shape = 3
+emission_rect_extents = Vector2(320, 160)
+direction = Vector2(0, -1)
+gravity = Vector2(0, -5)
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+scale_amount_max = 2.5
+color = Color(1, 0.33333334, 0.2, 0.8)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=945420695]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterUI" type="VBoxContainer" parent="MarginContainer" unique_id=1757645565]
+layout_mode = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/CenterUI" unique_id=392136525]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.9490196, 0.9607843, 1)
+theme_override_fonts/font = ExtResource("2_dp5i0")
+theme_override_font_sizes/font_size = 50
+text = "{ CHOOSE YOUR LOADOUT }"
+horizontal_alignment = 1
+
+[node name="SpacerTop" type="Control" parent="MarginContainer/CenterUI" unique_id=2129326387]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="CardsHBox" type="HBoxContainer" parent="MarginContainer/CenterUI" unique_id=2082313537]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="VanguardCard" type="Button" parent="MarginContainer/CenterUI/CardsHBox" unique_id=942543747]
+custom_minimum_size = Vector2(160, 200)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_pivot = Vector2(100, 120)
+flat = true
+
+[node name="CardBG" type="ColorRect" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard" unique_id=1269712468]
+material = SubResource("ShaderMaterial_aop4h")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CardContent" type="MarginContainer" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard" unique_id=364305199]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent" unique_id=2068649310]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ClassName" type="Label" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=286043214]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.9490196, 0.9607843, 1)
+theme_override_font_sizes/font_size = 11
+text = "THE VANGUARD"
+horizontal_alignment = 1
+
+[node name="WeaponSub" type="Label" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=593130896]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.36078432, 0.43137255, 1)
+theme_override_font_sizes/font_size = 9
+text = "[ GREATSWORD ]"
+horizontal_alignment = 1
+
+[node name="SpriteContainer" type="CenterContainer" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=1009406489]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="player_sword" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer/SpriteContainer" unique_id=1752894655 instance=ExtResource("4_aop4h")]
+texture_filter = 1
+position = Vector2(75, 25)
+scale = Vector2(1.5, 1.5)
+
+[node name="Divider" type="ColorRect" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=690392415]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.47843137, 0.08627451, 0.12941177, 1)
+
+[node name="StyleLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=422258472]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
+theme_override_font_sizes/font_size = 7
+text = "STYLE: MELEE SLASHER"
+horizontal_alignment = 1
+
+[node name="StatLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=760241820]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
+theme_override_font_sizes/font_size = 7
+text = "ATK: HIGH  |  DEF: HEAVY"
+horizontal_alignment = 1
+
+[node name="PerkLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/VanguardCard/CardContent/VBoxContainer" unique_id=341747142]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.23137255, 0.1882353, 1)
+theme_override_font_sizes/font_size = 7
+text = "CRIT ON 3RD COMBO HIT"
+horizontal_alignment = 1
+
+[node name="ArcherCard" type="Button" parent="MarginContainer/CenterUI/CardsHBox" unique_id=670836712]
+custom_minimum_size = Vector2(160, 200)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_pivot = Vector2(100, 120)
+flat = true
+
+[node name="CardBG" type="ColorRect" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard" unique_id=1124894587]
+material = SubResource("ShaderMaterial_dp5i0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CardContent" type="MarginContainer" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard" unique_id=38098682]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent" unique_id=528465194]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ClassName" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=1804441143]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.9490196, 0.9607843, 1)
+theme_override_font_sizes/font_size = 11
+text = "THE VANGUARD"
+horizontal_alignment = 1
+
+[node name="WeaponSub" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=364620822]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.36078432, 0.43137255, 1)
+theme_override_font_sizes/font_size = 9
+text = "[ GREATSWORD ]"
+horizontal_alignment = 1
+
+[node name="SpriteContainer" type="CenterContainer" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=226591792]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="player_sword" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer/SpriteContainer" unique_id=1629059543 instance=ExtResource("4_aop4h")]
+texture_filter = 1
+position = Vector2(75, 25)
+scale = Vector2(1.5, 1.5)
+
+[node name="Divider" type="ColorRect" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=842065090]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.47843137, 0.08627451, 0.12941177, 1)
+
+[node name="StyleLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=1816083125]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
+theme_override_font_sizes/font_size = 7
+text = "STYLE: MELEE SLASHER"
+horizontal_alignment = 1
+
+[node name="StatLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=1929218626]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.61960787, 0.6509804, 0.7019608, 1)
+theme_override_font_sizes/font_size = 7
+text = "ATK: HIGH  |  DEF: HEAVY"
+horizontal_alignment = 1
+
+[node name="PerkLabel" type="Label" parent="MarginContainer/CenterUI/CardsHBox/ArcherCard/CardContent/VBoxContainer" unique_id=2027413682]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.23137255, 0.1882353, 1)
+theme_override_font_sizes/font_size = 7
+text = "CRIT ON 3RD COMBO HIT"
+horizontal_alignment = 1
+
+[node name="SpacerBot" type="Control" parent="MarginContainer/CenterUI" unique_id=1762677855]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="FooterPrompt" type="Label" parent="MarginContainer/CenterUI" unique_id=1058179058]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.43137255, 0.4627451, 0.50980395, 1)
+theme_override_font_sizes/font_size = 9
+text = "[ A / D / ARROWS ] SELECT   •   [ ENTER / SPACE ] DEPLOY   •   [ ESC ] BACK"
+horizontal_alignment = 1
+
+[node name="HoverSfx" type="AudioStreamPlayer" parent="." unique_id=1825741983]
+stream = ExtResource("2_h6c7n")
+
+[node name="ClickSfx" type="AudioStreamPlayer" parent="." unique_id=614209200]
+stream = ExtResource("3_22ng4")

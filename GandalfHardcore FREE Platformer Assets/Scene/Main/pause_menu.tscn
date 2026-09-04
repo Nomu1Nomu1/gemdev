@@ -1,0 +1,170 @@
+[gd_scene format=3 uid="uid://c0dkh7duj3a41"]
+
+[ext_resource type="Script" uid="uid://dc3ltj4x2mytv" path="res://pause_menu.gd" id="1_8ns81"]
+[ext_resource type="Shader" uid="uid://ibow1si42wmh" path="res://BlurShader.gdshader" id="2_tq0kq"]
+[ext_resource type="FontFile" uid="uid://dbaoehkuhp4ky" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ApexMk2-BoldExtended.otf" id="3_k7onw"]
+[ext_resource type="Script" uid="uid://dpaeubctlxjet" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/pause_menu.gd" id="4_orkeu"]
+[ext_resource type="AudioStream" uid="uid://bi3a15qgtqyvi" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/HoverSound.mp3" id="5_uw4io"]
+[ext_resource type="AudioStream" uid="uid://b87pwxiiioo7n" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Sound/ClickSound.mp3" id="6_jafm2"]
+[ext_resource type="Shader" uid="uid://cs4hp5o627f5y" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/main_menu.gdshader" id="8_74033"]
+[ext_resource type="FontFile" uid="uid://blf0ofaqt4216" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Font/ThaleahFat.ttf" id="9_ivcgc"]
+[ext_resource type="Script" uid="uid://b5xdj0xp82bv6" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/menu_button.gd" id="10_qhfsi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c7af7"]
+shader = ExtResource("2_tq0kq")
+shader_parameter/blur_amount = 2.5
+shader_parameter/tint_color = Color(0.05, 0.05, 0.08, 0.45)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8t070"]
+shader = ExtResource("8_74033")
+shader_parameter/bg_color = Color(0.2901961, 0.039215688, 0.078431375, 1)
+shader_parameter/border_color = Color(1, 0.16470589, 0.29411766, 1)
+shader_parameter/corner_cut = 3.0
+shader_parameter/border_size = 1.0
+shader_parameter/fade_end = 0.65
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vx67"]
+content_margin_right = 2.0
+
+[node name="PauseMenu" type="Control" unique_id=1908251114]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ns81")
+
+[node name="BlurOverlay" type="ColorRect" parent="." unique_id=1471667467]
+material = SubResource("ShaderMaterial_c7af7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=485415497]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2135192236]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="S" type="Control" parent="MarginContainer/VBoxContainer" unique_id=913246786]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=914212428]
+light_mask = 2
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(1, 0.16470589, 0.29411766, 1)
+theme_override_colors/font_outline_color = Color(0.23921569, 0.02745098, 0.0627451, 1)
+theme_override_constants/outline_size = 20
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("3_k7onw")
+theme_override_font_sizes/font_size = 32
+text = "Pause"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1864443617]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=592510202]
+custom_minimum_size = Vector2(75, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+script = ExtResource("4_orkeu")
+
+[node name="HoverS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=598091359]
+stream = ExtResource("5_uw4io")
+
+[node name="ClickS" type="AudioStreamPlayer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1756879270]
+stream = ExtResource("6_jafm2")
+
+[node name="Bar" type="ColorRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=720814880]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_8t070")
+layout_mode = 2
+color = Color(0, 0.9411765, 1, 1)
+
+[node name="ResumeB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=2108924368]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_ivcgc")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8vx67")
+text = "Resume"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("10_qhfsi")
+
+[node name="OptionsB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=668804201]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_ivcgc")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8vx67")
+text = "Options"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("10_qhfsi")
+
+[node name="MainMenuB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=438041271]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_ivcgc")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8vx67")
+text = "Main menu"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("10_qhfsi")
+
+[node name="ExitB" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=888387501]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("9_ivcgc")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8vx67")
+text = "Exit"
+alignment = 2
+autowrap_trim_flags = 0
+script = ExtResource("10_qhfsi")
+
+[node name="S" type="Control" parent="MarginContainer/HBoxContainer" unique_id=980473109]
+layout_mode = 2
