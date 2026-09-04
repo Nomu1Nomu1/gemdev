@@ -11,14 +11,20 @@ config_version=5
 [application]
 
 config/name="GTW"
-run/main_scene="uid://odl2ja4xn70t"
+run/main_scene="res://Scene/MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SceneTransition="*uid://bp2aigdy1if2n"
-GameManager="*uid://dgvcq01nuud1f"
+GameManager="*res://Scene/Main/GameManager.gd"
+SceneTransition="*res://Scene/Transisi/scene_transition.tscn"
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Player"
 
 [display]
 
@@ -33,7 +39,6 @@ window/stretch/scale_mode="integer"
 [global_group]
 
 player=""
-boss_ui=""
 
 [input]
 

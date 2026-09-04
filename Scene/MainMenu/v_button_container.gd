@@ -65,7 +65,7 @@ func fade_out_bgm(duration: float) -> void:
 		)
 		bgm_tween.finished.connect(func(): bgm_music.stop())
 
-	SceneTransition.change_scene("res://Scene/Main/character_select.tscn", duration)
+	SceneTransition.change_scene(CHARACTER_SELECT_PATH, duration)
 
 func _move_background_to(target_btn: Button, instant: bool) -> void:
 	var target_pos_y = target_btn.position.y

@@ -739,9 +739,6 @@ show_percentage = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=979705398]
 position = Vector2(0, -20)
-limit_left = 0
-limit_top = 0
-limit_bottom = 300
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 drag_top_margin = 0.4

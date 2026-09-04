@@ -77,14 +77,6 @@ func _start_boss_intro(player: Node2D) -> void:
 		
 		# Beri waktu kamera meluncur kembali ke MC sebelum kontrol dibuka
 		await get_tree().create_timer(0.8).timeout
-	
-	var boss_ui = get_tree().get_first_node_in_group("boss_ui")
-	if boss_ui and boss_instance:
-		boss_ui.activate_boss_bar("EXECUTIONER", boss_instance.max_health)
-		# Sambungkan sinyal bos langsung ke fungsi tween UI
-		boss_instance.hp_changed.connect(boss_ui.update_hp)
-		boss_instance.boss_died.connect(boss_ui.hide_boss_bar)
-		
-		
+
 	# 5. Lepas kunci player (bisa jalan lagi)
 	player.set_physics_process(true)

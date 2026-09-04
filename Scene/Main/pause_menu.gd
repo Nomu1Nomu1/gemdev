@@ -49,18 +49,23 @@ func _on_button_pressed(btn: Button) -> void:
 	var label = btn.text.strip_edges().to_lower()
 	
 	if "restart" in label:
-		_restart_game()
+		_restart_level()
 	elif "menu" in label:
 		_to_main_menu()
 	elif "exit" in label:
 		_quit_game()
 
-func _restart_game() -> void:
+func _resume_game() -> void:
+	get_tree().paused = false
+	owner.hide()
+
+func _restart_level() -> void:
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func _to_main_menu() -> void:
 	get_tree().paused = false
-	SceneTransition.change_scene("res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/main_menu.tscn", 0.4)
+	SceneTransition.change_scene("res://Scene/MainMenu/main_menu.tscn", 0.4)
 
 func _quit_game() -> void:
 	get_tree().quit()

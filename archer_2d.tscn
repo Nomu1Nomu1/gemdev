@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dngxv0ymndov" path="res://GandalfHardcore FREE Platformer Assets/Floor Tiles1.png" id="5_q6r6c"]
 [ext_resource type="Texture2D" uid="uid://na87js6he6jx" path="res://GandalfHardcore FREE Platformer Assets/cloud6.png" id="6_d2bti"]
 [ext_resource type="Texture2D" uid="uid://bt64122b63nso" path="res://GandalfHardcore FREE Platformer Assets/Decor.png" id="6_kdubu"]
+[ext_resource type="Script" uid="uid://dwba8pqcyv1ie" path="res://archer_2d.gd" id="7_archerscript"]
+[ext_resource type="PackedScene" uid="uid://c0dkh7duj3a41" path="res://Scene/Main/pause_menu.tscn" id="8_pausemenu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kdubu"]
 texture = ExtResource("5_q6r6c")
@@ -1007,6 +1009,15 @@ texture = ExtResource("6_kdubu")
 sources/0 = SubResource("TileSetAtlasSource_d21ai")
 
 [node name="Main Place" type="Node2D" unique_id=1802350946]
+script = ExtResource("7_archerscript")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(136, 238)
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="PauseMenu" parent="UILayer" instance=ExtResource("8_pausemenu")]
 
 [node name="Background" type="CanvasGroup" parent="." unique_id=319301124]
 

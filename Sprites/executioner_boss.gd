@@ -2,16 +2,11 @@ extends CharacterBody2D
 
 enum State { WAKEUP, CHASE, ATTACK, SKILL, DEATH }
 var current_state: State = State.WAKEUP
-signal hp_changed(new_hp: int)
-signal boss_died
 
 @export var speed: float = 45.0
 @export var max_health: int = 150
-@export var attack_damage: int = 0
+@export var attack_damage: int = 20
 var current_health: int
-
-@export var attack_cooldown: float = 1.5
-var can_attack: bool = true
 
 var player: CharacterBody2D = null
 
@@ -64,12 +59,10 @@ func _physics_process(delta: float) -> void:
 
 # Terpicu saat player melangkah masuk ke jangkauan sabit bos
 func _on_attack_range_body_entered(body: Node2D) -> void:
-	if (body.is_in_group("player") or body.name == "player_sword"):
-		if current_state == State.CHASE and can_attack:
-			_start_attack()
+	if (body.is_in_group("player") or body.name == "player_sword") and current_state == State.CHASE:
+		_start_attack()
 
 func _start_attack() -> void:
-	can_attack = false # Kunci serangan
 	current_state = State.ATTACK
 	velocity.x = 0.0
 	if hitbox_collision:
@@ -87,37 +80,26 @@ func _on_animation_finished() -> void:
 			if hitbox_collision:
 				hitbox_collision.set_deferred("disabled", true)
 			
-			# Kembalikan bos ke mode kejar/idle dulu
-			current_state = State.CHASE
-			sprite.play("idle")
+			# Cek apakah player masih ada di dalam AttackRange
+			var bodies = attack_range.get_overlapping_bodies()
+			var player_still_inside: bool = false
+			for b in bodies:
+				if b.is_in_group("player") or b.name == "player_sword":
+					player_still_inside = true
+					break
 			
-			# Mulai jeda cooldown antar serangan
-			await get_tree().create_timer(attack_cooldown).timeout
-			can_attack = true # Buka kunci serangan
-			
-			# Jika player masih diam menempel di dalam jangkauan sabit, serang lagi
-			if current_state == State.CHASE:
-				for b in attack_range.get_overlapping_bodies():
-					if b.is_in_group("player") or b.name == "player_sword":
-						_start_attack()
-						break
+			if player_still_inside:
+				# Cooldown singkat sebelum tebasan berikutnya
+				await get_tree().create_timer(0.3).timeout
+				if current_state == State.ATTACK:
+					_start_attack()
+			else:
+				current_state = State.CHASE
 
 		"skill":
 			current_state = State.CHASE
 
 		"death":
-			# 1. Ambil kamera aktif
-			var camera: Camera2D = get_viewport().get_camera_2d()
-			if camera:
-				var cam_reset = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-				# Kembalikan zoom ke default (sesuaikan jika zoom default gamemu bukan 1.0)
-				cam_reset.tween_property(camera, "zoom", Vector2(1.0, 1.0), 0.8)
-				cam_reset.tween_property(camera, "offset", Vector2.ZERO, 0.8)
-				
-				# TUNGGU sampai tween selesai sebelum menghapus bos
-				await cam_reset.finished
-			
-			# 2. Hapus node bos setelah kamera aman kembali ke posisi semula
 			queue_free()
 
 # Menghantarkan damage ke player
@@ -133,11 +115,8 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func take_damage(amount: int, attacker: Node2D = null) -> void:
 	if current_state == State.DEATH:
 		return
-	current_health -= amount
-	current_health = max(0, current_health)
 
-	# Kirim sisa HP ke UI
-	hp_changed.emit(current_health)
+	current_health -= amount
 
 	if attacker:
 		var knock_dir: float = sign(global_position.x - attacker.global_position.x)
@@ -148,28 +127,7 @@ func take_damage(amount: int, attacker: Node2D = null) -> void:
 		velocity = Vector2.ZERO
 		if hitbox_collision:
 			hitbox_collision.set_deferred("disabled", true)
-		
-		boss_died.emit()
-		
-		# --- EFEK KAMERA FOKUS KE BOS ---
-		_focus_camera_on_boss_death()
 		sprite.play("death")
-		
-func _focus_camera_on_boss_death() -> void:
-	var camera: Camera2D = get_viewport().get_camera_2d()
-	if camera:
-		# Hitung offset agar kamera tepat menghadap ke tengah badan bos
-		var target_offset = global_position - camera.global_position + camera.offset
-		
-		# Efek zoom in dan pergeseran fokus
-		var cam_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-		cam_tween.tween_property(camera, "offset", target_offset, 0.7)
-		cam_tween.tween_property(camera, "zoom", Vector2(1.5, 1.5), 0.7)
-		
-		# Opsional: Slow motion sesaat agar kematian bos terasa klimaks
-		Engine.time_scale = 0.4
-		await get_tree().create_timer(0.4 * 0.4).timeout # Tunggu dalam hitungan real-time
-		Engine.time_scale = 1.0
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if current_state == State.ATTACK and sprite.animation == "attack":
