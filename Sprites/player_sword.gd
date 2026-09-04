@@ -164,11 +164,18 @@ func _start_attack() -> void:
 	is_attacking = true
 	velocity.x = 0
 	_hit_targets_in_swing.clear()
+	if attack_shape:
+		attack_shape.disabled = false
+	if attack_area:
+		for b in attack_area.get_overlapping_bodies():
+			_deal_attack_damage(b)
 	_play_anim("Attack")
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if str(anim_name).to_lower() == "attack":
 		is_attacking = false
+		if attack_shape:
+			attack_shape.disabled = true
 		_hit_targets_in_swing.clear()
 
 # --- Deteksi Serangan Mengenai Objek Lain ---
