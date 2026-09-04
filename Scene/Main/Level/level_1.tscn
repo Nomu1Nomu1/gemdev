@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://4fkurfgomlr2" path="res://Scene/MainMenu/Background/props-sliced/street-lamp.png" id="8_sltvl"]
 [ext_resource type="Texture2D" uid="uid://c2vjdxrrmkxsm" path="res://Scene/MainMenu/Background/props-sliced/well.png" id="9_p1j7f"]
 [ext_resource type="Script" uid="uid://b3oiupewjcknh" path="res://Scene/Main/Level/boss_trigger.gd" id="11_wttoi"]
-[ext_resource type="PackedScene" uid="uid://cx422csmgnebh" path="res://Sprites/executioner_boss.tscn" id="13_sltvl"]
+[ext_resource type="PackedScene" uid="uid://1j7denxhxrkp" path="res://Sprites/mes_boss.tscn" id="12_fvu0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7af7"]
 size = Vector2(3000, 40)
@@ -119,7 +119,7 @@ layer = 10
 [node name="BossTrigger" type="Area2D" parent="." unique_id=1636040074 node_paths=PackedStringArray("spawn_point")]
 collision_mask = 4
 script = ExtResource("11_wttoi")
-boss_scene = ExtResource("13_sltvl")
+boss_scene = ExtResource("12_fvu0s")
 spawn_point = NodePath("../BossSpawnPoint")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossTrigger" unique_id=952864298]
