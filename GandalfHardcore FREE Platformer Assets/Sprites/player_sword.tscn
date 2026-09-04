@@ -178,7 +178,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_ic333"]
 resource_name = "Idle"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -255,7 +255,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_u8t64"]
 resource_name = "Jump"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -627,7 +627,8 @@ bg_color = Color(0.16078432, 0.5019608, 0.7254902, 1)
 border_width_top = 1
 border_color = Color(0.45490196, 0.7254902, 1, 1)
 
-[node name="player_sword" type="CharacterBody2D" unique_id=1670712067]
+[node name="player_sword" type="CharacterBody2D" unique_id=1670712067 groups=["player"]]
+collision_layer = 4
 script = ExtResource("1_1e63u")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=13296528]

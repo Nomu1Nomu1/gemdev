@@ -10,11 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://bqws2rjn44xwo" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/props-sliced/house-c.png" id="7_peebt"]
 [ext_resource type="Texture2D" uid="uid://4fkurfgomlr2" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/props-sliced/street-lamp.png" id="8_sltvl"]
 [ext_resource type="Texture2D" uid="uid://c2vjdxrrmkxsm" path="res://GandalfHardcore FREE Platformer Assets/Scene/MainMenu/Background/props-sliced/well.png" id="9_p1j7f"]
+[ext_resource type="Script" uid="uid://b3oiupewjcknh" path="res://GandalfHardcore FREE Platformer Assets/Scene/Main/Level/boss_trigger.gd" id="11_wttoi"]
+[ext_resource type="PackedScene" uid="uid://cx422csmgnebh" path="res://GandalfHardcore FREE Platformer Assets/Sprites/executioner_boss.tscn" id="13_sltvl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7af7"]
 size = Vector2(3000, 40)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_c7af7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1akr1"]
 
 [node name="Level1" type="Node2D" unique_id=809252419]
 script = ExtResource("1_0oni7")
@@ -107,9 +111,23 @@ shape = SubResource("WorldBoundaryShape2D_c7af7")
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=28363923]
 position = Vector2(136, 238)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1535305672]
-
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=225219323]
 layer = 10
 
 [node name="PauseMenu" parent="UILayer" unique_id=1908251114 instance=ExtResource("2_e7uj3")]
+
+[node name="BossTrigger" type="Area2D" parent="." unique_id=1636040074 node_paths=PackedStringArray("spawn_point")]
+collision_mask = 4
+script = ExtResource("11_wttoi")
+boss_scene = ExtResource("13_sltvl")
+spawn_point = NodePath("../BossSpawnPoint")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossTrigger" unique_id=952864298]
+position = Vector2(1000, 0)
+scale = Vector2(1, 30.185)
+shape = SubResource("RectangleShape2D_1akr1")
+
+[node name="BossSpawnPoint" type="Marker2D" parent="." unique_id=508905364]
+position = Vector2(1200, 270)
+
+[connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]

@@ -48,10 +48,8 @@ func _on_button_pressed(btn: Button) -> void:
 	
 	var label = btn.text.strip_edges().to_lower()
 	
-	if "resume" in label:
+	if "restart" in label:
 		_resume_game()
-	elif "option" in label:
-		_open_options()
 	elif "menu" in label:
 		_to_main_menu()
 	elif "exit" in label:
@@ -60,9 +58,6 @@ func _on_button_pressed(btn: Button) -> void:
 func _resume_game() -> void:
 	get_tree().paused = false
 	owner.hide()
-
-func _open_options() -> void:
-	print("Buka panel Options...")
 
 func _to_main_menu() -> void:
 	get_tree().paused = false

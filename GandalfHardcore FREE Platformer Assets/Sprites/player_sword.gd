@@ -6,14 +6,16 @@ extends CharacterBody2D
 @export var jump_velocity: float = -350.0
 @export var max_health: int = 100
 
+var can_move: bool = true
 var current_health: int = 100
+var is_dead: bool = false
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # --- Parameter Tameng / Stamina ---
 @export var max_shield_stamina: float = 100.0
 var current_shield_stamina: float = 100.0
 var shield_drain_rate: float = 20.0        # Berkurang saat menahan block
-var shield_regen_rate: float = 8.0         # Kecepatan regen pasif (dibuat lambat)
+var shield_regen_rate: float = 8.0         # Kecepatan regen pasif
 var shield_hit_restore: float = 25.0       # Bonus stamina saat tebasan kena musuh
 
 var regen_delay_timer: float = 0.0
@@ -26,6 +28,7 @@ var is_shield_broken: bool = false
 @onready var shield: Sprite2D = $Visuals/Shield
 @onready var attack_area: Area2D = $Visuals/AttackArea
 @onready var attack_shape: CollisionShape2D = $Visuals/AttackArea/CollisionShape2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 @onready var health_bar: ProgressBar = $CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer/HealthBar
 @onready var shield_bar: ProgressBar = $CanvasLayer/HUD/PlayerStatus/PanelContainer/StatusRow/BarsContainer/ShieldBar
@@ -51,9 +54,18 @@ func _ready() -> void:
 	attack_area.area_entered.connect(_on_attack_hit)
 
 func _physics_process(delta: float) -> void:
-	# 1. Gravitasi
+	if is_dead:
+		return
+
 	if not is_on_floor():
 		velocity.y += gravity * delta
+
+	# Kunci kontrol jika sedang cutscene intro bos
+	if not can_move:
+		velocity.x = move_toward(velocity.x, 0.0, walk_speed * delta * 5.0)
+		move_and_slide()
+		_play_anim("Idle")
+		return
 
 	# 2. Pemulihan Guard Break (aktif kembali jika stamina mencapai minimal 25%)
 	if is_shield_broken and current_shield_stamina >= 25.0:
@@ -165,6 +177,9 @@ func _on_attack_hit(_area: Area2D) -> void:
 
 # --- Logika Menerima Serangan ---
 func take_damage(amount: int, attacker: Node2D = null) -> void:
+	if is_dead:
+		return
+
 	var blocked_successfully: bool = false
 
 	if is_blocking and attacker != null and not is_shield_broken:
@@ -176,7 +191,7 @@ func take_damage(amount: int, attacker: Node2D = null) -> void:
 
 	if blocked_successfully:
 		current_shield_stamina -= amount * 1.5
-		regen_delay_timer = regen_delay_duration # Reset jeda saat tameng terhantam
+		regen_delay_timer = regen_delay_duration
 		
 		if current_shield_stamina <= 0.0:
 			current_shield_stamina = 0.0
@@ -194,6 +209,31 @@ func take_damage(amount: int, attacker: Node2D = null) -> void:
 	if current_health <= 0:
 		_die()
 
+# --- Penanganan Kematian Karakter ---
 func _die() -> void:
+	is_dead = true
+	can_move = false
+	velocity = Vector2.ZERO
 	set_physics_process(false)
-	_play_anim("Idle")
+	
+	# Matikan tabrakan agar tidak terus terbentur/terdorong musuh
+	if collision_shape:
+		collision_shape.set_deferred("disabled", true)
+	if attack_shape:
+		attack_shape.set_deferred("disabled", true)
+
+	# Mainkan animasi mati jika tersedia, atau efek fallback
+	if anim.has_animation("Death") or anim.has_animation("death"):
+		var death_anim = "Death" if anim.has_animation("Death") else "death"
+		anim.play(death_anim)
+		await anim.animation_finished
+	else:
+		# Jika belum ada animasi mati, buat karakter berkedip merah dan memudar
+		var death_tween = create_tween()
+		death_tween.tween_property(visuals, "modulate", Color.RED, 0.2)
+		death_tween.tween_property(visuals, "modulate:a", 0.0, 0.8)
+		await death_tween.finished
+
+	# Jeda sebelum reset scene
+	await get_tree().create_timer(0.5).timeout
+	SceneTransition.change_scene("res://GandalfHardcore FREE Platformer Assets/Scene/gameover_screen.tscn", 0.4)
